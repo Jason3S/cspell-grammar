@@ -1,6 +1,6 @@
 import chalk, { Chalk } from 'chalk';
-import { create } from './cacheMap';
-import { Scope } from './grammarDefinition';
+import { create } from '../grammar/cacheMap';
+import { Scope } from '../grammar';
 
 export type ColorTextFn = (text: string) => string;
 export type ColorMap = [RegExp, ColorTextFn][];

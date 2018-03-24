@@ -1,7 +1,6 @@
-import { Grammar, TokenizeLineResult } from './grammar';
+import { Grammar, TokenizeLineResult, Scope } from '../grammar';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { Scope } from './grammarDefinition';
 
 const defaultEncoding = 'utf8';
 const defaultLineLength = 140;

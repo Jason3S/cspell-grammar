@@ -1,4 +1,4 @@
-import { TokenizeTextResult, Grammar } from './grammar';
+import { TokenizeTextResult, Grammar } from '../grammar';
 import * as fs from 'fs-extra';
 
 export interface TokenizeFileResult extends TokenizeTextResult {

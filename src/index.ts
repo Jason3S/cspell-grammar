@@ -1,1 +1,1 @@
-export * from './grammar/grammar';
+export * from './grammar';

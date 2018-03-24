@@ -1,4 +1,4 @@
-import { Grammar, TokenizeLineResult } from './grammar';
+import { Grammar, TokenizeLineResult } from '../grammar';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 

@@ -29,4 +29,19 @@ describe('Validate CacheMap', function() {
         expect(cache.get('Hello')).to.be.equal('HELLO');
         expect(n).to.be.equal(2);
     });
+
+    it('test that loader is NOT called', () => {
+        let n = 0;
+        const loader = (t: string) => { ++n; return t.toUpperCase(); };
+        const cache = create(loader);
+        expect(cache.has('hello')).to.be.false;
+        cache.set('hello', 'hello');
+        expect(cache.has('hello')).to.be.true;
+        expect(n).to.be.equal(0);
+        expect(cache.get('hello')).to.be.equal('hello');
+        expect(n).to.be.equal(0);
+        expect(cache.get('Hello')).to.be.equal('HELLO');
+        expect(n).to.be.equal(1);
+    });
+
 });
