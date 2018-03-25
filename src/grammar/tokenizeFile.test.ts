@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { create, defaultUpdateFixtures } from '../fixtures';
-import { Grammar } from '../grammar';
+import { Grammar } from './grammar';
 import { tokenizeFile } from './tokenizeFile';
-import * as cacheMap from '../grammar/cacheMap';
+import * as cacheMap from '../util/cacheMap';
 import * as path from 'path';
 
 const updateFixtures = defaultUpdateFixtures;

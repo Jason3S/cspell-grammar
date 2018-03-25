@@ -1,5 +1,5 @@
 import chalk, { Chalk } from 'chalk';
-import { Grammar } from './grammar';
+import { Grammar } from '../grammar';
 
 type ColorMap = [RegExp, Chalk][];
 

@@ -1,12 +1,14 @@
 import chalk, { Chalk } from 'chalk';
-import { create } from '../grammar/cacheMap';
+import { create } from '../util/cacheMap';
 import { Scope } from '../grammar';
+import { Token } from '../grammar/tokenize';
 
 export type ColorTextFn = (text: string) => string;
 export type ColorMap = [RegExp, ColorTextFn][];
 const bgColor = '#202020';
 
 export type ScopeColorizer = (text: string, scopes: Scope) => string;
+export type LineColorizer = (text: string, tokens: Token[]) => string;
 
 export interface ScopeColorizerDefinition {
     colorMap: ColorMap;
@@ -32,6 +34,28 @@ export function createScopeColorizer(colorDef: ScopeColorizerDefinition = defaul
     }
 
     return colorize;
+}
+
+export function createColorizer(colorDef: ScopeColorizerDefinition = defaultColorDef): LineColorizer {
+    const scopeColorizer = createScopeColorizer(colorDef);
+
+    return function(text: string, tokens: Token[]): string {
+        const parts: string[] = [];
+
+        let pos = 0;
+        for (const token of tokens) {
+            if (token.startIndex > pos) {
+                parts.push(scopeColorizer(text.slice(pos, token.startIndex), ''));
+            }
+            parts.push(scopeColorizer(text.slice(token.startIndex, token.endIndex), token.scopes.join(' ')));
+            pos = token.endIndex;
+        }
+        if (pos < text.length) {
+            parts.push(scopeColorizer(text.slice(pos), ''));
+        }
+
+        return parts.join('');
+    };
 }
 
 export function createDefaultColorMap(chalk: Chalk): ScopeColorizerDefinition {

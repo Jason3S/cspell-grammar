@@ -2,7 +2,7 @@ import { GrammarDefinition, Pattern, RegexOrString, Capture, PatternName } from 
 import { isPatternInclude, isPatternMatch, isPatternBeginEnd, scope, captures, endCaptures, isPatternName } from './pattern';
 import * as XRegExp from 'xregexp';
 import { escapeMatch, MatchOffsetResult, matchesToOffsets } from './regexpUtil';
-import { create } from './cacheMap';
+import { create } from '../util/cacheMap';
 
 const maxDepth = 100;
 

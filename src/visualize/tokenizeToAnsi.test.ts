@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { create, defaultUpdateFixtures } from '../fixtures';
 import { Grammar } from '../grammar';
-import * as cacheMap from '../grammar/cacheMap';
+import * as cacheMap from '../util/cacheMap';
 import { tokenizeFile } from './tokenizeToAnsi';
 import { createScopeColorizer, createDefaultColorMap } from './tokenColorizer';
 import chalk from 'chalk';

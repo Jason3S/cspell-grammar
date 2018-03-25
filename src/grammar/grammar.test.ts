@@ -2,7 +2,7 @@ import { Grammar } from './grammar';
 import { expect } from 'chai';
 import * as path from 'path';
 import * as fs from 'fs-extra';
-import { formatTokenizeText } from './display';
+import { formatTokenizeText } from '../util/display';
 
 const javascriptGrammarFile = path.join(__dirname, '..', '..', 'fixtures', 'grammar', 'syntax', 'javascript.tmLanguage.json');
 const sampleJavascriptFile = path.join(__dirname, '..', '..', 'fixtures', 'grammar', 'src', 'sample.js');

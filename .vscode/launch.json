@@ -4,16 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "type": "node",
             "request": "launch",
-            "name": "Run CSpell",
+            "name": "Run App",
             "program": "${workspaceRoot}/dist/app.js",
-			"args": ["-e", "src", "-v", "**/*.py"],
+			"args": ["colorize", "--color", "${workspaceRoot}/fixtures/grammar/syntax/TypeScript.tmLanguage.json", "${workspaceRoot}/fixtures/grammar/src/sample.ts"],
             "cwd": "${workspaceRoot}",
 			"outFiles": [ "${workspaceRoot}/dist/**/*.js" ],
-            "sourceMaps": true
+            "sourceMaps": true,
+            "preLaunchTask": "npm: build"
         },
 		{
 			"type": "node",
