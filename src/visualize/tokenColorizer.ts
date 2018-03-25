@@ -36,9 +36,7 @@ export function createScopeColorizer(colorDef: ScopeColorizerDefinition = defaul
     return colorize;
 }
 
-export function createColorizer(colorDef: ScopeColorizerDefinition = defaultColorDef): LineColorizer {
-    const scopeColorizer = createScopeColorizer(colorDef);
-
+export function createColorizer(scopeColorizer = createScopeColorizer(defaultColorDef)): LineColorizer {
     return function(text: string, tokens: Token[]): string {
         const parts: string[] = [];
 

@@ -21,7 +21,7 @@ program
     .description('Colorize a file')
     .arguments('<grammar> <file>')
     .action((grammar: string, file: string) => {
-        colorizeFile(grammar, file, (line: string) => process.stdout.write(line)).then(
+        colorizeFile(grammar, file, (line: string) => process.stdout.write(line + '\n')).then(
             () => { process.exit(0); },
             (reason) => {
                 console.log(reason);
