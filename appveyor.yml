@@ -1,6 +1,8 @@
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "8"
+  - nodejs_version: "10"
+  - nodejs_version: "9"
+  - nodejs_version: "8"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -17,7 +19,7 @@ test_script:
   # run tests
   - npm test
   # run app
-  - node --harmony_regexp_lookbehind ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
+  - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
 
 # Don't actually build.
 build: off
