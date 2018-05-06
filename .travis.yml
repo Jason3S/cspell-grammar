@@ -2,14 +2,12 @@ language: node_js
 node_js:
   - "node"
   - "8"
-script:
+install:
   - npm install
-  # the prepublish script run during install currently does clean-build and test
-  # with npm v5+ that will no longer be the case, so these will need to be added back.
-  # - npm run tscv
-  # - npm run clean-build
-  # - npm test
+  - ./node_modules/.bin/check-node-version --node ">=10" && export NODE_HARMONY_FLAGS="" || export NODE_HARMONY_FLAGS="--harmony_regexp_lookbehind"
+  - npm run build
+
+script:
   - npm run lint-travis
   - npm run travis-coverage
-  # - npm run test-spec
-  - node --harmony_regexp_lookbehind ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
+  - node $NODE_HARMONY_FLAGS ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
