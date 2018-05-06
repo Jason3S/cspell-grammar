@@ -4,10 +4,9 @@ node_js:
   - "8"
 install:
   - npm install
-  - ./node_modules/.bin/check-node-version --node ">=10" && export NODE_HARMONY_FLAGS="" || export NODE_HARMONY_FLAGS="--harmony_regexp_lookbehind"
   - npm run build
 
 script:
   - npm run lint-travis
   - npm run travis-coverage
-  - node $NODE_HARMONY_FLAGS ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
+  - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js

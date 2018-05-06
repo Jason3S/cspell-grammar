@@ -54,7 +54,6 @@
     "@types/node": "^8.10.12",
     "@types/xregexp": "^3.0.29",
     "chai": "^4.1.2",
-    "check-node-version": "^3.2.0",
     "coveralls": "^3.0.1",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
