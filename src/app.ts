@@ -9,7 +9,7 @@ let showHelp = true;
 
 program
     .version(npmPackage.version)
-    .description('Spelling Checker for Code')
+    .description('Grammar parser for cspell.')
     ;
 
 program
