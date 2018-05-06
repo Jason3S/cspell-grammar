@@ -13,6 +13,3 @@ simulate the features of Oniguruma, but it may fail. At the grammar engine's cor
 So any limitations in XRegExp are also limitations in the grammar.
   - `\A`, `\G`, `\Z`, `\z` flags are simulated in a best attempt, but it is not possible to get them
 exactly right.
-
-
-
