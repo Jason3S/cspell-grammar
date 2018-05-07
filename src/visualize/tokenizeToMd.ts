@@ -6,7 +6,7 @@ const defaultEncoding = 'utf8';
 
 export function tokenizeLineToMd(tokenizedLine: TokenizeLineResult): string {
     const { line, lineNumber, tokens } = tokenizedLine;
-    const lineText = line ? ('```' + line + '```') : '*blank line*';
+    const lineText = line ? ('``` ' + line + ' ```') : '*blank line*';
     const parts = [
         `**${lineNumber}:** ${lineText}`,
         ''

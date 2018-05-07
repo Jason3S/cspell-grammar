@@ -1,50 +1,50 @@
 # sample.ts
 
-**1:** ```#!/usr/bin/env node```
+**1:** ``` #!/usr/bin/env node ```
 
 | text | scope |
 | -- | -- |
 | ``` #! ``` | source.ts comment.line.shebang.ts punctuation.definition.comment.ts |
 | ``` /usr/bin/env node ``` | source.ts comment.line.shebang.ts |
 
-**2:** ```// Single line comment.```
+**2:** ``` // Single line comment. ```
 
 | text | scope |
 | -- | -- |
 | ``` // ``` | source.ts comment.line.double-slash.ts punctuation.definition.comment.ts |
 | ```  Single line comment. ``` | source.ts comment.line.double-slash.ts |
 
-**3:** ```/**```
+**3:** ``` /** ```
 
 | text | scope |
 | -- | -- |
 | ``` /** ``` | source.ts comment.block.documentation.ts punctuation.definition.comment.ts |
 
-**4:** ``` * sample.ts```
+**4:** ```  * sample.ts ```
 
 | text | scope |
 | -- | -- |
 | ```  * sample.ts ``` | source.ts comment.block.documentation.ts |
 
-**5:** ``` * This is a sample `typescript` file for use with the grammar parser.```
+**5:** ```  * This is a sample `typescript` file for use with the grammar parser. ```
 
 | text | scope |
 | -- | -- |
 | ```  * This is a sample `typescript` file for use with the grammar parser. ``` | source.ts comment.block.documentation.ts |
 
-**6:** ``` *```
+**6:** ```  * ```
 
 | text | scope |
 | -- | -- |
 | ```  * ``` | source.ts comment.block.documentation.ts |
 
-**7:** ``` * It will contain a mix of stuff.```
+**7:** ```  * It will contain a mix of stuff. ```
 
 | text | scope |
 | -- | -- |
 | ```  * It will contain a mix of stuff. ``` | source.ts comment.block.documentation.ts |
 
-**8:** ``` */```
+**8:** ```  */ ```
 
 | text | scope |
 | -- | -- |
@@ -53,7 +53,7 @@
 
 **9:** *blank line*
 
-**10:** ```const greeting = 'Hello World. Don\'t worry, be happy.';```
+**10:** ``` const greeting = 'Hello World. Don\'t worry, be happy.'; ```
 
 | text | scope |
 | -- | -- |
@@ -70,14 +70,14 @@
 | ``` ' ``` | source.ts meta.var.expr.ts string.quoted.single.ts punctuation.definition.string.end.ts |
 | ``` ; ``` | source.ts punctuation.terminator.statement.ts |
 
-**11:** ```// alias for uniqueFilterFnGenerator```
+**11:** ``` // alias for uniqueFilterFnGenerator ```
 
 | text | scope |
 | -- | -- |
 | ``` // ``` | source.ts comment.line.double-slash.ts punctuation.definition.comment.ts |
 | ```  alias for uniqueFilterFnGenerator ``` | source.ts comment.line.double-slash.ts |
 
-**12:** ```export const uniqueFn = uniqueFilterFnGenerator;```
+**12:** ``` export const uniqueFn = uniqueFilterFnGenerator; ```
 
 | text | scope |
 | -- | -- |
@@ -94,7 +94,7 @@
 
 **13:** *blank line*
 
-**14:** ```export function uniqueFilterFnGenerator<T>(): (v: T) => boolean;```
+**14:** ``` export function uniqueFilterFnGenerator<T>(): (v: T) => boolean; ```
 
 | text | scope |
 | -- | -- |
@@ -122,7 +122,7 @@
 | ``` boolean ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts support.type.primitive.ts |
 | ``` ; ``` | source.ts punctuation.terminator.statement.ts |
 
-**15:** ```export function uniqueFilterFnGenerator<T, U>(extractFn: (v: T) => U): (v: T) => boolean;```
+**15:** ``` export function uniqueFilterFnGenerator<T, U>(extractFn: (v: T) => U): (v: T) => boolean; ```
 
 | text | scope |
 | -- | -- |
@@ -166,7 +166,7 @@
 | ``` boolean ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts support.type.primitive.ts |
 | ``` ; ``` | source.ts punctuation.terminator.statement.ts |
 
-**16:** ```export function uniqueFilterFnGenerator<T>(extractFn?: (v: T) => T): (v: T) => boolean {```
+**16:** ``` export function uniqueFilterFnGenerator<T>(extractFn?: (v: T) => T): (v: T) => boolean { ```
 
 | text | scope |
 | -- | -- |
@@ -209,7 +209,7 @@
 | ```   ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts |
 | ``` { ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts punctuation.definition.block.ts |
 
-**17:** ```    const values = new Set<T>();```
+**17:** ```     const values = new Set<T>(); ```
 
 | text | scope |
 | -- | -- |
@@ -230,7 +230,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts new.expr.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts punctuation.terminator.statement.ts |
 
-**18:** ```    const extractor = extractFn || (a => a);```
+**18:** ```     const extractor = extractFn || (a => a); ```
 
 | text | scope |
 | -- | -- |
@@ -254,7 +254,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts punctuation.terminator.statement.ts |
 
-**19:** ```    return (v: T) => {```
+**19:** ```     return (v: T) => { ```
 
 | text | scope |
 | -- | -- |
@@ -270,7 +270,7 @@
 | ```  =>  ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts |
 | ``` { ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts punctuation.definition.block.ts |
 
-**20:** ```        const vv = extractor(v);```
+**20:** ```         const vv = extractor(v); ```
 
 | text | scope |
 | -- | -- |
@@ -287,7 +287,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**21:** ```        const ret = !values.has(vv);```
+**21:** ```         const ret = !values.has(vv); ```
 
 | text | scope |
 | -- | -- |
@@ -307,7 +307,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**22:** ```        values.add(vv);```
+**22:** ```         values.add(vv); ```
 
 | text | scope |
 | -- | -- |
@@ -320,7 +320,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**23:** ```        return ret;```
+**23:** ```         return ret; ```
 
 | text | scope |
 | -- | -- |
@@ -330,7 +330,7 @@
 | ``` ret ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts variable.other.readwrite.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**24:** ```    };```
+**24:** ```     }; ```
 
 | text | scope |
 | -- | -- |
@@ -338,7 +338,7 @@
 | ``` } ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts meta.block.ts punctuation.definition.block.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts punctuation.terminator.statement.ts |
 
-**25:** ```}```
+**25:** ``` } ```
 
 | text | scope |
 | -- | -- |
@@ -346,7 +346,7 @@
 
 **26:** *blank line*
 
-**27:** ```export function unique<T>(src: T[]): T[] {```
+**27:** ``` export function unique<T>(src: T[]): T[] { ```
 
 | text | scope |
 | -- | -- |
@@ -374,7 +374,7 @@
 | ```   ``` | source.ts meta.function.ts meta.return.type.ts |
 | ``` { ``` | source.ts meta.function.ts meta.return.type.ts meta.object.type.ts punctuation.definition.block.ts |
 
-**28:** ```    return [...(new Set(src))];```
+**28:** ```     return [...(new Set(src))]; ```
 
 | text | scope |
 | -- | -- |
@@ -394,7 +394,7 @@
 | ``` ] ``` | source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.brace.square.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.return.type.ts meta.object.type.ts punctuation.terminator.statement.ts |
 
-**29:** ```}```
+**29:** ``` } ```
 
 | text | scope |
 | -- | -- |
@@ -402,7 +402,7 @@
 
 **30:** *blank line*
 
-**31:** ```function main() {```
+**31:** ``` function main() { ```
 
 | text | scope |
 | -- | -- |
@@ -414,7 +414,7 @@
 | ```   ``` | source.ts meta.function.ts |
 | ``` { ``` | source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts |
 
-**32:** ```    // Write something to the console.```
+**32:** ```     // Write something to the console. ```
 
 | text | scope |
 | -- | -- |
@@ -422,7 +422,7 @@
 | ``` // ``` | source.ts meta.function.ts meta.block.ts comment.line.double-slash.ts punctuation.definition.comment.ts |
 | ```  Write something to the console. ``` | source.ts meta.function.ts meta.block.ts comment.line.double-slash.ts |
 
-**33:** ```    console.log('Hello World.');```
+**33:** ```     console.log('Hello World.'); ```
 
 | text | scope |
 | -- | -- |
@@ -437,7 +437,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.block.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**34:** ```    let a = 2 + greeting.length;  // some random value.```
+**34:** ```     let a = 2 + greeting.length;  // some random value. ```
 
 | text | scope |
 | -- | -- |
@@ -460,7 +460,7 @@
 | ``` // ``` | source.ts meta.function.ts meta.block.ts comment.line.double-slash.ts punctuation.definition.comment.ts |
 | ```  some random value. ``` | source.ts meta.function.ts meta.block.ts comment.line.double-slash.ts |
 
-**35:** ```    const values = [1, 2, 3, 3, 4, a, 5, 6];```
+**35:** ```     const values = [1, 2, 3, 3, 4, a, 5, 6]; ```
 
 | text | scope |
 | -- | -- |
@@ -497,7 +497,7 @@
 | ``` ] ``` | source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.array.literal.ts meta.brace.square.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**36:** ```    console.log(values);```
+**36:** ```     console.log(values); ```
 
 | text | scope |
 | -- | -- |
@@ -510,7 +510,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.block.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**37:** ```    console.log(unique(values));```
+**37:** ```     console.log(unique(values)); ```
 
 | text | scope |
 | -- | -- |
@@ -526,7 +526,7 @@
 | ``` ) ``` | source.ts meta.function.ts meta.block.ts meta.brace.round.ts |
 | ``` ; ``` | source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts |
 
-**38:** ```}```
+**38:** ``` } ```
 
 | text | scope |
 | -- | -- |
@@ -534,7 +534,7 @@
 
 **39:** *blank line*
 
-**40:** ```main();```
+**40:** ``` main(); ```
 
 | text | scope |
 | -- | -- |

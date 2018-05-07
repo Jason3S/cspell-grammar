@@ -1,6 +1,6 @@
 # sample.js
 
-**1:** ```"use strict";```
+**1:** ``` "use strict"; ```
 
 | text | scope |
 | -- | -- |
@@ -11,7 +11,7 @@
 
 **2:** *blank line*
 
-**3:** ```const path = require("path");```
+**3:** ``` const path = require("path"); ```
 
 | text | scope |
 | -- | -- |
@@ -29,7 +29,7 @@
 | ``` ) ``` | source.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**4:** ```const program = require("commander");```
+**4:** ``` const program = require("commander"); ```
 
 | text | scope |
 | -- | -- |
@@ -47,7 +47,7 @@
 | ``` ) ``` | source.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**5:** ```const npmPackage = require(path.join(__dirname, '..', 'package.json'));```
+**5:** ``` const npmPackage = require(path.join(__dirname, '..', 'package.json')); ```
 
 | text | scope |
 | -- | -- |
@@ -78,7 +78,7 @@
 | ``` ) ``` | source.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**6:** ```const application_1 = require("./application");```
+**6:** ``` const application_1 = require("./application"); ```
 
 | text | scope |
 | -- | -- |
@@ -96,7 +96,7 @@
 | ``` ) ``` | source.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**7:** ```const App = require("./application");```
+**7:** ``` const App = require("./application"); ```
 
 | text | scope |
 | -- | -- |
@@ -114,7 +114,7 @@
 | ``` ) ``` | source.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**8:** ```const chalk_1 = require("chalk");```
+**8:** ``` const chalk_1 = require("chalk"); ```
 
 | text | scope |
 | -- | -- |
@@ -134,7 +134,7 @@
 
 **9:** *blank line*
 
-**10:** ```const param = {```
+**10:** ``` const param = { ```
 
 | text | scope |
 | -- | -- |
@@ -146,7 +146,7 @@
 | ```   ``` | source.js meta.var.expr.js |
 | ``` { ``` | source.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js |
 
-**11:** ```    one: 55,```
+**11:** ```     one: 55, ```
 
 | text | scope |
 | -- | -- |
@@ -157,7 +157,7 @@
 | ``` 55 ``` | source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js constant.numeric.decimal.js |
 | ``` , ``` | source.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**12:** ```    two: 66,```
+**12:** ```     two: 66, ```
 
 | text | scope |
 | -- | -- |
@@ -168,7 +168,7 @@
 | ``` 66 ``` | source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js constant.numeric.decimal.js |
 | ``` , ``` | source.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**13:** ```    4: 'four',```
+**13:** ```     4: 'four', ```
 
 | text | scope |
 | -- | -- |
@@ -181,7 +181,7 @@
 | ``` ' ``` | source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` , ``` | source.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**14:** ```};```
+**14:** ``` }; ```
 
 | text | scope |
 | -- | -- |
@@ -190,14 +190,14 @@
 
 **15:** *blank line*
 
-**16:** ```// interface InitOptions extends Options {}```
+**16:** ``` // interface InitOptions extends Options {} ```
 
 | text | scope |
 | -- | -- |
 | ``` // ``` | source.js comment.line.double-slash.js punctuation.definition.comment.js |
 | ```  interface InitOptions extends Options {} ``` | source.js comment.line.double-slash.js |
 
-**17:** ```function issueEmitter(issue) {```
+**17:** ``` function issueEmitter(issue) { ```
 
 | text | scope |
 | -- | -- |
@@ -210,7 +210,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**18:** ```    const { uri = '', row, col, text } = issue;```
+**18:** ```     const { uri = '', row, col, text } = issue; ```
 
 | text | scope |
 | -- | -- |
@@ -242,7 +242,7 @@
 | ``` issue ``` | source.js meta.function.js meta.block.js meta.var.expr.js variable.other.readwrite.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**19:** ```    console.log(`${chalk_1.default.green(uri)}[${row}, ${col}]: Unknown word: ${chalk_1.default.red(text)}`);```
+**19:** ```     console.log(`${chalk_1.default.green(uri)}[${row}, ${col}]: Unknown word: ${chalk_1.default.red(text)}`); ```
 
 | text | scope |
 | -- | -- |
@@ -285,13 +285,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**20:** ```}```
+**20:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**21:** ```function issueEmitterWordsOnly(issue) {```
+**21:** ``` function issueEmitterWordsOnly(issue) { ```
 
 | text | scope |
 | -- | -- |
@@ -304,7 +304,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**22:** ```    const { text } = issue;```
+**22:** ```     const { text } = issue; ```
 
 | text | scope |
 | -- | -- |
@@ -322,7 +322,7 @@
 | ``` issue ``` | source.js meta.function.js meta.block.js meta.var.expr.js variable.other.readwrite.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**23:** ```    console.log(text);```
+**23:** ```     console.log(text); ```
 
 | text | scope |
 | -- | -- |
@@ -335,13 +335,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**24:** ```}```
+**24:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**25:** ```function errorEmitter(message, error) {```
+**25:** ``` function errorEmitter(message, error) { ```
 
 | text | scope |
 | -- | -- |
@@ -357,7 +357,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**26:** ```    console.error(chalk_1.default.red(message), error);```
+**26:** ```     console.error(chalk_1.default.red(message), error); ```
 
 | text | scope |
 | -- | -- |
@@ -380,7 +380,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**27:** ```    return Promise.resolve();```
+**27:** ```     return Promise.resolve(); ```
 
 | text | scope |
 | -- | -- |
@@ -394,13 +394,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**28:** ```}```
+**28:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**29:** ```function infoEmitter(message) {```
+**29:** ``` function infoEmitter(message) { ```
 
 | text | scope |
 | -- | -- |
@@ -413,7 +413,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**30:** ```    console.info(chalk_1.default.yellow(message));```
+**30:** ```     console.info(chalk_1.default.yellow(message)); ```
 
 | text | scope |
 | -- | -- |
@@ -433,13 +433,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**31:** ```}```
+**31:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**32:** ```function debugEmitter(message) {```
+**32:** ``` function debugEmitter(message) { ```
 
 | text | scope |
 | -- | -- |
@@ -452,7 +452,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**33:** ```    console.info(chalk_1.default.cyan(message));```
+**33:** ```     console.info(chalk_1.default.cyan(message)); ```
 
 | text | scope |
 | -- | -- |
@@ -472,13 +472,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**34:** ```}```
+**34:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**35:** ```function nullEmitter(_) { }```
+**35:** ``` function nullEmitter(_) { } ```
 
 | text | scope |
 | -- | -- |
@@ -493,7 +493,7 @@
 | ```   ``` | source.js meta.function.js meta.block.js |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**36:** ```let showHelp = true;```
+**36:** ``` let showHelp = true; ```
 
 | text | scope |
 | -- | -- |
@@ -506,13 +506,13 @@
 | ``` true ``` | source.js meta.var.expr.js constant.language.boolean.true.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**37:** ```program```
+**37:** ``` program ```
 
 | text | scope |
 | -- | -- |
 | ``` program ``` | source.js variable.other.readwrite.js |
 
-**38:** ```    .version(npmPackage.version)```
+**38:** ```     .version(npmPackage.version) ```
 
 | text | scope |
 | -- | -- |
@@ -525,7 +525,7 @@
 | ``` version ``` | source.js support.variable.property.dom.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**39:** ```    .description('Spelling Checker for Code');```
+**39:** ```     .description('Spelling Checker for Code'); ```
 
 | text | scope |
 | -- | -- |
@@ -539,13 +539,13 @@
 | ``` ) ``` | source.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**40:** ```program```
+**40:** ``` program ```
 
 | text | scope |
 | -- | -- |
 | ``` program ``` | source.js variable.other.readwrite.js |
 
-**41:** ```    .option('-c, --config <cspell.json>', 'Configuration file to use.  By default cspell looks for cspell.json in the current directory.')```
+**41:** ```     .option('-c, --config <cspell.json>', 'Configuration file to use.  By default cspell looks for cspell.json in the current directory.') ```
 
 | text | scope |
 | -- | -- |
@@ -563,7 +563,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**42:** ```    .option('-v, --verbose', 'display more information about the files being checked and the configuration')```
+**42:** ```     .option('-v, --verbose', 'display more information about the files being checked and the configuration') ```
 
 | text | scope |
 | -- | -- |
@@ -581,7 +581,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**43:** ```    .option('--local <local>', 'Set language locals. i.e. "en,fr" for English and French, or "en-GB" for British English.')```
+**43:** ```     .option('--local <local>', 'Set language locals. i.e. "en,fr" for English and French, or "en-GB" for British English.') ```
 
 | text | scope |
 | -- | -- |
@@ -599,7 +599,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**44:** ```    .option('--wordsOnly', 'Only output the words not found in the dictionaries.')```
+**44:** ```     .option('--wordsOnly', 'Only output the words not found in the dictionaries.') ```
 
 | text | scope |
 | -- | -- |
@@ -617,7 +617,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**45:** ```    .option('-u, --unique', 'Only output the first instance of a word not found in the dictionaries.')```
+**45:** ```     .option('-u, --unique', 'Only output the first instance of a word not found in the dictionaries.') ```
 
 | text | scope |
 | -- | -- |
@@ -635,7 +635,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**46:** ```    .option('--debug', 'Output information useful for debugging cspell.json files.')```
+**46:** ```     .option('--debug', 'Output information useful for debugging cspell.json files.') ```
 
 | text | scope |
 | -- | -- |
@@ -653,7 +653,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**47:** ```    .option('-e, --exclude <glob>', 'Exclude files matching the glob pattern')```
+**47:** ```     .option('-e, --exclude <glob>', 'Exclude files matching the glob pattern') ```
 
 | text | scope |
 | -- | -- |
@@ -671,7 +671,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**48:** ```    .option('--no-color', 'Turn off color.')```
+**48:** ```     .option('--no-color', 'Turn off color.') ```
 
 | text | scope |
 | -- | -- |
@@ -689,7 +689,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**49:** ```    .option('--color', 'Force color')```
+**49:** ```     .option('--color', 'Force color') ```
 
 | text | scope |
 | -- | -- |
@@ -707,7 +707,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**50:** ```    .arguments('<files...>')```
+**50:** ```     .arguments('<files...>') ```
 
 | text | scope |
 | -- | -- |
@@ -720,7 +720,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**51:** ```    .action((files, options) => {```
+**51:** ```     .action((files, options) => { ```
 
 | text | scope |
 | -- | -- |
@@ -739,7 +739,7 @@
 | ```   ``` | source.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**52:** ```    const emitters = {```
+**52:** ```     const emitters = { ```
 
 | text | scope |
 | -- | -- |
@@ -752,7 +752,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js |
 
-**53:** ```        issue: options.wordsOnly ? issueEmitterWordsOnly : issueEmitter,```
+**53:** ```         issue: options.wordsOnly ? issueEmitterWordsOnly : issueEmitter, ```
 
 | text | scope |
 | -- | -- |
@@ -773,7 +773,7 @@
 | ``` issueEmitter ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js meta.object.member.js variable.other.readwrite.js |
 | ``` , ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**54:** ```        error: errorEmitter,```
+**54:** ```         error: errorEmitter, ```
 
 | text | scope |
 | -- | -- |
@@ -784,7 +784,7 @@
 | ``` errorEmitter ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js meta.object.member.js variable.other.readwrite.js |
 | ``` , ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**55:** ```        info: options.verbose ? infoEmitter : nullEmitter,```
+**55:** ```         info: options.verbose ? infoEmitter : nullEmitter, ```
 
 | text | scope |
 | -- | -- |
@@ -805,7 +805,7 @@
 | ``` nullEmitter ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js meta.object.member.js variable.other.readwrite.js |
 | ``` , ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**56:** ```        debug: options.debug ? debugEmitter : nullEmitter,```
+**56:** ```         debug: options.debug ? debugEmitter : nullEmitter, ```
 
 | text | scope |
 | -- | -- |
@@ -826,7 +826,7 @@
 | ``` nullEmitter ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js meta.object.member.js variable.other.readwrite.js |
 | ``` , ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js punctuation.separator.comma.js |
 
-**57:** ```    };```
+**57:** ```     }; ```
 
 | text | scope |
 | -- | -- |
@@ -834,7 +834,7 @@
 | ``` } ``` | source.js meta.arrow.js meta.block.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**58:** ```    showHelp = false;```
+**58:** ```     showHelp = false; ```
 
 | text | scope |
 | -- | -- |
@@ -846,7 +846,7 @@
 | ``` false ``` | source.js meta.arrow.js meta.block.js constant.language.boolean.false.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**59:** ```    App.lint(files, options, emitters).then(result => {```
+**59:** ```     App.lint(files, options, emitters).then(result => { ```
 
 | text | scope |
 | -- | -- |
@@ -872,7 +872,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**60:** ```        console.error('CSpell: Files checked: %d, Issues found: %d in %d files', result.files, result.issues, result.filesWithIssues.size);```
+**60:** ```         console.error('CSpell: Files checked: %d, Issues found: %d in %d files', result.files, result.issues, result.filesWithIssues.size); ```
 
 | text | scope |
 | -- | -- |
@@ -904,7 +904,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**61:** ```        process.exit(result.issues ? 1 : 0);```
+**61:** ```         process.exit(result.issues ? 1 : 0); ```
 
 | text | scope |
 | -- | -- |
@@ -927,7 +927,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**62:** ```    }, (error) => {```
+**62:** ```     }, (error) => { ```
 
 | text | scope |
 | -- | -- |
@@ -943,7 +943,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**63:** ```        console.error(error.message);```
+**63:** ```         console.error(error.message); ```
 
 | text | scope |
 | -- | -- |
@@ -958,7 +958,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**64:** ```        process.exit(1);```
+**64:** ```         process.exit(1); ```
 
 | text | scope |
 | -- | -- |
@@ -971,7 +971,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**65:** ```    });```
+**65:** ```     }); ```
 
 | text | scope |
 | -- | -- |
@@ -980,7 +980,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**66:** ```});```
+**66:** ``` }); ```
 
 | text | scope |
 | -- | -- |
@@ -988,13 +988,13 @@
 | ``` ) ``` | source.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**67:** ```program```
+**67:** ``` program ```
 
 | text | scope |
 | -- | -- |
 | ``` program ``` | source.js variable.other.readwrite.js |
 
-**68:** ```    .command('trace')```
+**68:** ```     .command('trace') ```
 
 | text | scope |
 | -- | -- |
@@ -1007,7 +1007,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**69:** ```    .description('Trace words')```
+**69:** ```     .description('Trace words') ```
 
 | text | scope |
 | -- | -- |
@@ -1020,7 +1020,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**70:** ```    .arguments('<words...>')```
+**70:** ```     .arguments('<words...>') ```
 
 | text | scope |
 | -- | -- |
@@ -1033,7 +1033,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**71:** ```    .option('-c, --config <cspell.json>', 'Configuration file to use.  By default cspell looks for cspell.json in the current directory.')```
+**71:** ```     .option('-c, --config <cspell.json>', 'Configuration file to use.  By default cspell looks for cspell.json in the current directory.') ```
 
 | text | scope |
 | -- | -- |
@@ -1051,7 +1051,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**72:** ```    .option('--no-color', 'Turn off color.')```
+**72:** ```     .option('--no-color', 'Turn off color.') ```
 
 | text | scope |
 | -- | -- |
@@ -1069,7 +1069,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**73:** ```    .option('--color', 'Force color')```
+**73:** ```     .option('--color', 'Force color') ```
 
 | text | scope |
 | -- | -- |
@@ -1087,7 +1087,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**74:** ```    .action((words, options) => {```
+**74:** ```     .action((words, options) => { ```
 
 | text | scope |
 | -- | -- |
@@ -1106,7 +1106,7 @@
 | ```   ``` | source.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**75:** ```    showHelp = false;```
+**75:** ```     showHelp = false; ```
 
 | text | scope |
 | -- | -- |
@@ -1118,7 +1118,7 @@
 | ``` false ``` | source.js meta.arrow.js meta.block.js constant.language.boolean.false.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**76:** ```    App.trace(words, options).then(result => {```
+**76:** ```     App.trace(words, options).then(result => { ```
 
 | text | scope |
 | -- | -- |
@@ -1141,7 +1141,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**77:** ```        result.forEach(emitTraceResult);```
+**77:** ```         result.forEach(emitTraceResult); ```
 
 | text | scope |
 | -- | -- |
@@ -1154,7 +1154,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**78:** ```        process.exit(0);```
+**78:** ```         process.exit(0); ```
 
 | text | scope |
 | -- | -- |
@@ -1167,7 +1167,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**79:** ```    }, (error) => {```
+**79:** ```     }, (error) => { ```
 
 | text | scope |
 | -- | -- |
@@ -1183,7 +1183,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**80:** ```        console.error(error.message);```
+**80:** ```         console.error(error.message); ```
 
 | text | scope |
 | -- | -- |
@@ -1198,7 +1198,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**81:** ```        process.exit(1);```
+**81:** ```         process.exit(1); ```
 
 | text | scope |
 | -- | -- |
@@ -1211,7 +1211,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**82:** ```    });```
+**82:** ```     }); ```
 
 | text | scope |
 | -- | -- |
@@ -1220,7 +1220,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**83:** ```});```
+**83:** ``` }); ```
 
 | text | scope |
 | -- | -- |
@@ -1228,13 +1228,13 @@
 | ``` ) ``` | source.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**84:** ```program```
+**84:** ``` program ```
 
 | text | scope |
 | -- | -- |
 | ``` program ``` | source.js variable.other.readwrite.js |
 
-**85:** ```    .command('check')```
+**85:** ```     .command('check') ```
 
 | text | scope |
 | -- | -- |
@@ -1247,7 +1247,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**86:** ```    .description('Spell check file(s) and display the result. The full file is displayed in color.')```
+**86:** ```     .description('Spell check file(s) and display the result. The full file is displayed in color.') ```
 
 | text | scope |
 | -- | -- |
@@ -1260,7 +1260,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**87:** ```    .arguments('<files...>')```
+**87:** ```     .arguments('<files...>') ```
 
 | text | scope |
 | -- | -- |
@@ -1273,7 +1273,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**88:** ```    .option('-c, --config <cspell.json>', 'Configuration file to use.  By default cspell looks for cspell.json in the current directory.')```
+**88:** ```     .option('-c, --config <cspell.json>', 'Configuration file to use.  By default cspell looks for cspell.json in the current directory.') ```
 
 | text | scope |
 | -- | -- |
@@ -1291,7 +1291,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**89:** ```    .option('--no-color', 'Turn off color.')```
+**89:** ```     .option('--no-color', 'Turn off color.') ```
 
 | text | scope |
 | -- | -- |
@@ -1309,7 +1309,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**90:** ```    .option('--color', 'Force color')```
+**90:** ```     .option('--color', 'Force color') ```
 
 | text | scope |
 | -- | -- |
@@ -1327,7 +1327,7 @@
 | ``` ' ``` | source.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.brace.round.js |
 
-**91:** ```    .action(async (files, options) => {```
+**91:** ```     .action(async (files, options) => { ```
 
 | text | scope |
 | -- | -- |
@@ -1348,7 +1348,7 @@
 | ```   ``` | source.js meta.arrow.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js punctuation.definition.block.js |
 
-**92:** ```    showHelp = false;```
+**92:** ```     showHelp = false; ```
 
 | text | scope |
 | -- | -- |
@@ -1360,7 +1360,7 @@
 | ``` false ``` | source.js meta.arrow.js meta.block.js constant.language.boolean.false.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**93:** ```    for (const filename of files) {```
+**93:** ```     for (const filename of files) { ```
 
 | text | scope |
 | -- | -- |
@@ -1379,7 +1379,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**94:** ```        console.log(chalk_1.default.yellowBright(`Check file: ${filename}`));```
+**94:** ```         console.log(chalk_1.default.yellowBright(`Check file: ${filename}`)); ```
 
 | text | scope |
 | -- | -- |
@@ -1404,7 +1404,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**95:** ```        console.log();```
+**95:** ```         console.log(); ```
 
 | text | scope |
 | -- | -- |
@@ -1416,7 +1416,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**96:** ```        try {```
+**96:** ```         try { ```
 
 | text | scope |
 | -- | -- |
@@ -1425,7 +1425,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.block.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**97:** ```            const result = await application_1.checkText(filename, options);```
+**97:** ```             const result = await application_1.checkText(filename, options); ```
 
 | text | scope |
 | -- | -- |
@@ -1449,7 +1449,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**98:** ```            for (const item of result.items) {```
+**98:** ```             for (const item of result.items) { ```
 
 | text | scope |
 | -- | -- |
@@ -1470,7 +1470,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**99:** ```                const fn = item.flagIE === App.IncludeExcludeFlag.EXCLUDE```
+**99:** ```                 const fn = item.flagIE === App.IncludeExcludeFlag.EXCLUDE ```
 
 | text | scope |
 | -- | -- |
@@ -1493,7 +1493,7 @@
 | ``` . ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js meta.var.expr.js punctuation.accessor.js |
 | ``` EXCLUDE ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js meta.var.expr.js variable.other.constant.property.js |
 
-**100:** ```                    ? chalk_1.default.gray```
+**100:** ```                     ? chalk_1.default.gray ```
 
 | text | scope |
 | -- | -- |
@@ -1506,7 +1506,7 @@
 | ``` . ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js punctuation.accessor.js |
 | ``` gray ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js variable.other.property.js |
 
-**101:** ```                    : item.isError ? chalk_1.default.red : chalk_1.default.whiteBright;```
+**101:** ```                     : item.isError ? chalk_1.default.red : chalk_1.default.whiteBright; ```
 
 | text | scope |
 | -- | -- |
@@ -1534,7 +1534,7 @@
 | ``` whiteBright ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js variable.other.property.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**102:** ```                const t = fn(item.text);```
+**102:** ```                 const t = fn(item.text); ```
 
 | text | scope |
 | -- | -- |
@@ -1553,7 +1553,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**103:** ```                process.stdout.write(t);```
+**103:** ```                 process.stdout.write(t); ```
 
 | text | scope |
 | -- | -- |
@@ -1568,14 +1568,14 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**104:** ```            }```
+**104:** ```             } ```
 
 | text | scope |
 | -- | -- |
 | ```              ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js |
 | ``` } ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**105:** ```            console.log();```
+**105:** ```             console.log(); ```
 
 | text | scope |
 | -- | -- |
@@ -1587,14 +1587,14 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**106:** ```        }```
+**106:** ```         } ```
 
 | text | scope |
 | -- | -- |
 | ```          ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js |
 | ``` } ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**107:** ```        catch (e) {```
+**107:** ```         catch (e) { ```
 
 | text | scope |
 | -- | -- |
@@ -1607,7 +1607,7 @@
 | ```   ``` | source.js meta.arrow.js meta.block.js meta.block.js |
 | ``` { ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**108:** ```            console.error(`Failed to read "${filename}"`);```
+**108:** ```             console.error(`Failed to read "${filename}"`); ```
 
 | text | scope |
 | -- | -- |
@@ -1626,14 +1626,14 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**109:** ```        }```
+**109:** ```         } ```
 
 | text | scope |
 | -- | -- |
 | ```          ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js |
 | ``` } ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**110:** ```        console.log();```
+**110:** ```         console.log(); ```
 
 | text | scope |
 | -- | -- |
@@ -1645,14 +1645,14 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**111:** ```    }```
+**111:** ```     } ```
 
 | text | scope |
 | -- | -- |
 | ```      ``` | source.js meta.arrow.js meta.block.js meta.block.js |
 | ``` } ``` | source.js meta.arrow.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**112:** ```    process.exit(0);```
+**112:** ```     process.exit(0); ```
 
 | text | scope |
 | -- | -- |
@@ -1665,7 +1665,7 @@
 | ``` ) ``` | source.js meta.arrow.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.arrow.js meta.block.js punctuation.terminator.statement.js |
 
-**113:** ```});```
+**113:** ``` }); ```
 
 | text | scope |
 | -- | -- |
@@ -1675,7 +1675,7 @@
 
 **114:** *blank line*
 
-**115:** ```program.parse(process.argv);```
+**115:** ``` program.parse(process.argv); ```
 
 | text | scope |
 | -- | -- |
@@ -1689,7 +1689,7 @@
 | ``` ) ``` | source.js meta.brace.round.js |
 | ``` ; ``` | source.js punctuation.terminator.statement.js |
 
-**116:** ```if (showHelp) {```
+**116:** ``` if (showHelp) { ```
 
 | text | scope |
 | -- | -- |
@@ -1701,7 +1701,7 @@
 | ```   ``` | source.js |
 | ``` { ``` | source.js meta.block.js punctuation.definition.block.js |
 
-**117:** ```    program.help();```
+**117:** ```     program.help(); ```
 
 | text | scope |
 | -- | -- |
@@ -1713,13 +1713,13 @@
 | ``` ) ``` | source.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.block.js punctuation.terminator.statement.js |
 
-**118:** ```}```
+**118:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.block.js punctuation.definition.block.js |
 
-**119:** ```function emitTraceResult(r) {```
+**119:** ``` function emitTraceResult(r) { ```
 
 | text | scope |
 | -- | -- |
@@ -1732,7 +1732,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**120:** ```    const terminalWidth = process.stdout.columns || 120;```
+**120:** ```     const terminalWidth = process.stdout.columns || 120; ```
 
 | text | scope |
 | -- | -- |
@@ -1754,7 +1754,7 @@
 | ``` 120 ``` | source.js meta.function.js meta.block.js meta.var.expr.js constant.numeric.decimal.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**121:** ```    const widthName = 20;```
+**121:** ```     const widthName = 20; ```
 
 | text | scope |
 | -- | -- |
@@ -1768,7 +1768,7 @@
 | ``` 20 ``` | source.js meta.function.js meta.block.js meta.var.expr.js constant.numeric.decimal.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**122:** ```    const w = chalk_1.default.green(r.word);```
+**122:** ```     const w = chalk_1.default.green(r.word); ```
 
 | text | scope |
 | -- | -- |
@@ -1791,7 +1791,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**123:** ```    const f = r.found```
+**123:** ```     const f = r.found ```
 
 | text | scope |
 | -- | -- |
@@ -1806,7 +1806,7 @@
 | ``` . ``` | source.js meta.function.js meta.block.js meta.var.expr.js punctuation.accessor.js |
 | ``` found ``` | source.js meta.function.js meta.block.js meta.var.expr.js variable.other.property.js |
 
-**124:** ```        ? chalk_1.default.whiteBright('*')```
+**124:** ```         ? chalk_1.default.whiteBright('*') ```
 
 | text | scope |
 | -- | -- |
@@ -1824,7 +1824,7 @@
 | ``` ' ``` | source.js meta.function.js meta.block.js string.quoted.single.js punctuation.definition.string.end.js |
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 
-**125:** ```        : chalk_1.default.dim('-');```
+**125:** ```         : chalk_1.default.dim('-'); ```
 
 | text | scope |
 | -- | -- |
@@ -1843,7 +1843,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**126:** ```    const n = chalk_1.default.yellowBright(pad(r.dictName, widthName));```
+**126:** ```     const n = chalk_1.default.yellowBright(pad(r.dictName, widthName)); ```
 
 | text | scope |
 | -- | -- |
@@ -1872,7 +1872,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**127:** ```    const used = [r.word.length, 1, widthName].reduce((a, b) => a + b, 3);```
+**127:** ```     const used = [r.word.length, 1, widthName].reduce((a, b) => a + b, 3); ```
 
 | text | scope |
 | -- | -- |
@@ -1919,7 +1919,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**128:** ```    const widthSrc = terminalWidth - used;```
+**128:** ```     const widthSrc = terminalWidth - used; ```
 
 | text | scope |
 | -- | -- |
@@ -1937,7 +1937,7 @@
 | ``` used ``` | source.js meta.function.js meta.block.js meta.var.expr.js variable.other.readwrite.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**129:** ```    const s = chalk_1.default.white(trimMid(r.dictSource, widthSrc));```
+**129:** ```     const s = chalk_1.default.white(trimMid(r.dictSource, widthSrc)); ```
 
 | text | scope |
 | -- | -- |
@@ -1966,7 +1966,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**130:** ```    const line = [w, f, n, s].join(' ');```
+**130:** ```     const line = [w, f, n, s].join(' '); ```
 
 | text | scope |
 | -- | -- |
@@ -1998,7 +1998,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**131:** ```    console.log(line);```
+**131:** ```     console.log(line); ```
 
 | text | scope |
 | -- | -- |
@@ -2011,13 +2011,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**132:** ```}```
+**132:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**133:** ```function pad(s, w) {```
+**133:** ``` function pad(s, w) { ```
 
 | text | scope |
 | -- | -- |
@@ -2033,7 +2033,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**134:** ```    return (s + ' '.repeat(w)).substr(0, w);```
+**134:** ```     return (s + ' '.repeat(w)).substr(0, w); ```
 
 | text | scope |
 | -- | -- |
@@ -2064,13 +2064,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**135:** ```}```
+**135:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**136:** ```function trimMid(s, w) {```
+**136:** ``` function trimMid(s, w) { ```
 
 | text | scope |
 | -- | -- |
@@ -2086,7 +2086,7 @@
 | ```   ``` | source.js meta.function.js |
 | ``` { ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**137:** ```    if (s.length <= w) {```
+**137:** ```     if (s.length <= w) { ```
 
 | text | scope |
 | -- | -- |
@@ -2105,7 +2105,7 @@
 | ```   ``` | source.js meta.function.js meta.block.js |
 | ``` { ``` | source.js meta.function.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**138:** ```        return s;```
+**138:** ```         return s; ```
 
 | text | scope |
 | -- | -- |
@@ -2115,14 +2115,14 @@
 | ``` s ``` | source.js meta.function.js meta.block.js meta.block.js variable.other.readwrite.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js meta.block.js punctuation.terminator.statement.js |
 
-**139:** ```    }```
+**139:** ```     } ```
 
 | text | scope |
 | -- | -- |
 | ```      ``` | source.js meta.function.js meta.block.js meta.block.js |
 | ``` } ``` | source.js meta.function.js meta.block.js meta.block.js punctuation.definition.block.js |
 
-**140:** ```    const l = Math.floor((w - 3) / 2);```
+**140:** ```     const l = Math.floor((w - 3) / 2); ```
 
 | text | scope |
 | -- | -- |
@@ -2151,7 +2151,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**141:** ```    const r = Math.ceil((w - 3) / 2);```
+**141:** ```     const r = Math.ceil((w - 3) / 2); ```
 
 | text | scope |
 | -- | -- |
@@ -2180,7 +2180,7 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.var.expr.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**142:** ```    return s.substr(0, l) + '...' + s.substr(-r);```
+**142:** ```     return s.substr(0, l) + '...' + s.substr(-r); ```
 
 | text | scope |
 | -- | -- |
@@ -2214,13 +2214,13 @@
 | ``` ) ``` | source.js meta.function.js meta.block.js meta.brace.round.js |
 | ``` ; ``` | source.js meta.function.js meta.block.js punctuation.terminator.statement.js |
 
-**143:** ```}```
+**143:** ``` } ```
 
 | text | scope |
 | -- | -- |
 | ``` } ``` | source.js meta.function.js meta.block.js punctuation.definition.block.js |
 
-**144:** ```//# sourceMappingURL=app.js.map```
+**144:** ``` //# sourceMappingURL=app.js.map ```
 
 | text | scope |
 | -- | -- |
