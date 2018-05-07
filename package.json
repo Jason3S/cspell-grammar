@@ -1,4 +1,6 @@
 {
+	"name": "cspell-grammar-repo",
+	"description": "A tmLanguage based Grammar Parser for cSpell",
 	"devDependencies": {
 		"lerna": "^2.11.0"
 	},
@@ -10,5 +12,12 @@
 		"lerna-install": "lerna bootstrap",
 		"lerna-build": "lerna run build",
 		"lerna-test": "lerna run test"
-	}
+	},
+	"author": "Jason Dent",
+	"license": "MIT",
+	"private": true,
+	"bugs": {
+		"url": "https://github.com/Jason3S/cspell-grammar/issues"
+	},
+	"homepage": "https://github.com/Jason3S/cspell-grammar#readme"
 }
