@@ -2,6 +2,8 @@ import { GrammarDefinition } from './grammarDefinition';
 import { Token, tokenizeLine, grammarToRule } from './tokenize';
 import * as fs from 'fs-extra';
 
+export { Token, tokenizeLine } from './tokenize';
+
 export interface Tokenizer {
     tokenize(line: string): Token[];
 }

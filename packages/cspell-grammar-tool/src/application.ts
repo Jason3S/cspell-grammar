@@ -1,8 +1,8 @@
 
 import { createColorizer } from './visualize/tokenColorizer';
-import { Grammar } from '.';
-import { tokenizeFile } from './grammar/tokenizeFile';
-import { Token } from './grammar/tokenize';
+import { Grammar } from 'cspell-grammar';
+import { tokenizeFile } from 'cspell-grammar';
+import { Token } from 'cspell-grammar';
 
 export type Emitter = (line: string) => void;
 
