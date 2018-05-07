@@ -4,9 +4,11 @@ node_js:
   - "8"
 install:
   - npm install
+  - npm run lerna-install
   - npm run build
 
 script:
+  - npm run test
   - npm run lint-travis
   - npm run travis-coverage
-  - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
+  # - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js

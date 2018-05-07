@@ -11,6 +11,7 @@ install:
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm install
+  - npm run lerna-install
 
 # Post-install test scripts.
 test_script:
@@ -20,7 +21,7 @@ test_script:
   # run tests
   - npm test
   # run app
-  - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
+  # - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js
 
 # Don't actually build.
 build: off
