@@ -1,7 +1,22 @@
-# Grammar Parser
-tmLanguage Grammar parser for cSpell
+# Grammar Parser Tool
+
+This tool parses a text file with a given tmLanguage grammar definition.
 
 **WIP** -- This is a *Work In Progress*
+
+## Usage
+
+```sh
+cspell-grammar --help
+```
+
+### Colorize
+
+This tool will colorize a source code file.
+
+```sh
+cspell-grammar colorize <tmLanguage> <sourcefile>
+```
 
 This language parser support tmLanguage style grammars.
 

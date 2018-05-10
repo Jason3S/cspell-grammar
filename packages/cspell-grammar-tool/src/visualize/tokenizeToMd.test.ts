@@ -3,13 +3,14 @@ import { create, defaultUpdateFixtures } from '../fixtures';
 import { Grammar } from 'cspell-grammar';
 import * as cacheMap from '../util/cacheMap';
 import { tokenizeFileToMd } from './tokenizeToMd';
+import { pathToGrammar } from '../grammarFiles';
 
 const updateFixtures = defaultUpdateFixtures;
 const fixtureHelper = create();
 fixtureHelper.enableWriteBack = updateFixtures;
 
 function pathToSyntax(name: string) {
-    return fixtureHelper.resolveFixturePath('grammar', 'syntax', name);
+    return pathToGrammar(name);
 }
 
 function pathToSource(name: string) {

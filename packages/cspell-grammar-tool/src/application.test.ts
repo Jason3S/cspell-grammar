@@ -4,6 +4,7 @@ import { create, defaultUpdateFixtures } from './fixtures';
 import * as cacheMap from './util/cacheMap';
 import { Scope } from 'cspell-grammar';
 import { createColorizer } from './visualize';
+import { pathToGrammar } from './grammarFiles';
 
 const forceFixtureUpdate = false;
 const updateFixtures = defaultUpdateFixtures || forceFixtureUpdate;
@@ -29,7 +30,7 @@ describe('Validate Application', () => {
     tests.forEach(([file, grammar]) =>
         it('Tests colorizing a file', async () => {
             const output: string[] = [];
-            const grammarPath = fixtureHelper.resolveFixturePath('grammar', 'syntax', grammar);
+            const grammarPath = pathToGrammar(grammar);
             const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', file);
             const fixturePath = fixtureHelper.relativeFixturePath('application', 'colorize', file + '.txt');
             await colorizeFile(grammarPath, filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));

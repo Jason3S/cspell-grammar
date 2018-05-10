@@ -5,13 +5,14 @@ import * as cacheMap from '../util/cacheMap';
 import { tokenizeFile } from './tokenizeToAnsi';
 import { createScopeColorizer, createDefaultColorMap } from './tokenColorizer';
 import chalk from 'chalk';
+import { pathToGrammar } from '../grammarFiles';
 
 const updateFixtures = defaultUpdateFixtures;
 const fixtureHelper = create();
 fixtureHelper.enableWriteBack = updateFixtures;
 
 function pathToSyntax(name: string) {
-    return fixtureHelper.resolveFixturePath('grammar', 'syntax', name);
+    return pathToGrammar(name);
 }
 
 function pathToSource(name: string) {
