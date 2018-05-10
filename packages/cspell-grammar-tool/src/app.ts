@@ -2,7 +2,7 @@
 
 import * as path from 'path';
 import * as program from 'commander';
-import { colorizeFile } from './application';
+import { colorizeFile, analyse } from './application';
 const npmPackage = require(path.join(__dirname, '..', 'package.json'));
 
 let showHelp = true;
@@ -31,6 +31,20 @@ program
         showHelp = false;
     });
 
+program
+    .command('analyze')
+    .description('Colorize a file')
+    .arguments('<grammar> <file>')
+    .action((grammar: string, file: string) => {
+        analyse(grammar, file, (line: string) => process.stdout.write(line + '\n')).then(
+            () => { process.exit(0); },
+            (reason) => {
+                console.log(reason);
+                process.exit(1);
+            }
+        );
+        showHelp = false;
+    });
 
 program.parse(process.argv);
 
