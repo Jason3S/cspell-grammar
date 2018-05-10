@@ -25,8 +25,7 @@
     "test-ts-file": "NODE_ENV=test mocha --exit --require ts-node/register",
     "test-watch": "npm run build && mocha --exit --require ts-node/register --watch --recursive \"src/**/*.test.ts\"",
     "prepublish": "npm run lint && npm run clean-build && npm test",
-    "coverage-coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "travis-coverage": "npm run generate-code-coverage && npm run coverage-coveralls",
+    "coverage-report": "nyc report --reporter=text-lcov > ../../coverage/$npm_package_name.lcov",
     "test-unit": "mocha --recursive \"dist/**/*.test.js\"",
     "test": "npm run test-unit"
   },
@@ -51,7 +50,6 @@
     "@types/node": "^8.10.12",
     "@types/xregexp": "^3.0.29",
     "chai": "^4.1.2",
-    "coveralls": "^3.0.1",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "rimraf": "^2.6.2",

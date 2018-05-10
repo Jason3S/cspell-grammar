@@ -10,5 +10,5 @@ install:
 script:
   - npm run test
   - npm run lint-travis
-  - npm run travis-coverage
+  - npm run coverage-coveralls
   # - node ./dist/app.js colorize ./fixtures/grammar/syntax/javascript.tmLanguage.json ./fixtures/grammar/src/sample.js

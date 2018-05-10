@@ -2,16 +2,23 @@
 	"name": "cspell-grammar-repo",
 	"description": "A tmLanguage based Grammar Parser for cSpell",
 	"devDependencies": {
-		"lerna": "^2.11.0"
+		"coveralls": "^3.0.1",
+		"lerna": "^2.11.0",
+		"nyc": "^11.7.3",
+		"rimraf": "^2.6.2"
 	},
 	"scripts": {
 		"test": "npm run lerna-test",
 		"build": "npm run lerna-build",
 		"lint-travis": "lerna run lint-travis",
-		"travis-coverage": "lerna run travis-coverage",
+		"travis-coverage": "npm run generate-code-coverage && npm run coverage-coveralls",
 		"lerna-install": "lerna bootstrap",
 		"lerna-build": "lerna run build",
-		"lerna-test": "lerna run test"
+		"lerna-test": "lerna run test",
+		"coverage": "npm run generate-code-coverage && npm run collect-coverage-report",
+		"generate-code-coverage": "lerna run generate-code-coverage",
+		"collect-coverage-report": "rimraf ./coverage && mkdir coverage && lerna run coverage-report",
+		"coverage-coveralls": "npm run coverage && cat coverage/* | coveralls"
 	},
 	"author": "Jason Dent",
 	"license": "MIT",
