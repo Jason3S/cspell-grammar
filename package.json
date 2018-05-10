@@ -10,8 +10,8 @@
 	"scripts": {
 		"test": "npm run lerna-test",
 		"build": "npm run lerna-build",
+		"bootstrap": "lerna bootstrap",
 		"lint-travis": "lerna run lint-travis",
-		"travis-coverage": "npm run generate-code-coverage && npm run coverage-coveralls",
 		"lerna-install": "lerna bootstrap",
 		"lerna-build": "lerna run build",
 		"lerna-test": "lerna run test",
