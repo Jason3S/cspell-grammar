@@ -1,4 +1,4 @@
-import { Grammar, TokenizeLineResult, Scope } from '../grammar';
+import { Grammar, TokenizeLineResult } from '../grammar';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
@@ -6,7 +6,7 @@ const defaultEncoding = 'utf8';
 const defaultLineLength = 140;
 const defaultMaxTextWidth = 40;
 
-export type ScopeColorizer = (text: string, scopes: Scope) => string;
+import { ScopeColorizer } from './types';
 
 function *splitLine(width: number, text: string): IterableIterator<string> {
 

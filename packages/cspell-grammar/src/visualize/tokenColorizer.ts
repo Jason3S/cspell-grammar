@@ -1,14 +1,11 @@
 import chalk, { Chalk } from 'chalk';
 import { create } from '../util/cacheMap';
-import { Scope } from '../grammar';
-import { Token } from '../grammar/tokenize';
+import { Scope, Token } from '../grammar';
+import { ScopeColorizer, LineColorizer } from './types';
 
 export type ColorTextFn = (text: string) => string;
 export type ColorMap = [RegExp, ColorTextFn][];
 const bgColor = '#202020';
-
-export type ScopeColorizer = (text: string, scopes: Scope) => string;
-export type LineColorizer = (text: string, tokens: Token[]) => string;
 
 export interface ScopeColorizerDefinition {
     colorMap: ColorMap;
