@@ -1,6 +1,6 @@
 {
   "name": "cspell-grammar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tmLanguage based Grammar Parser for cSpell",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -52,7 +52,7 @@
     "@types/node": "^8.10.12",
     "@types/xregexp": "^3.0.29",
     "chai": "^4.1.2",
-    "cspell-grammar-syntax": "^0.1.0",
+    "cspell-grammar-syntax": "^0.1.1",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "rimraf": "^2.6.2",
