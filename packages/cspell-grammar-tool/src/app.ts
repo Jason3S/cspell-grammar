@@ -2,7 +2,7 @@
 
 import * as path from 'path';
 import * as program from 'commander';
-import { colorizeFile, analyse, pListToJson } from './application';
+import { colorizeFile, analyse } from './application';
 const npmPackage = require(path.join(__dirname, '..', 'package.json'));
 
 let showHelp = true;
@@ -46,14 +46,14 @@ program
         showHelp = false;
     });
 
-program
-    .command('convert')
-    .description('Convert pList')
-    .arguments('<tmLanguage>')
-    .action((grammar: string) => {
-        pListToJson(grammar).then(text => console.log(text));
-        showHelp = false;
-    });
+// program
+//     .command('convert')
+//     .description('Convert pList')
+//     .arguments('<tmLanguage>')
+//     .action((grammar: string) => {
+//         pListToJson(grammar).then(text => console.log(text));
+//         showHelp = false;
+//     });
 
 program.parse(process.argv);
 

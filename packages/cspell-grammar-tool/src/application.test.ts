@@ -47,4 +47,22 @@ describe('Validate Application', () => {
             expect(result.actual).to.be.equal(result.expected);
         })
     );
+
+    it('tests failing to find a grammar for colorize', () => {
+        const filename = 'sample.unknown_ext';
+        const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', filename);
+        colorizeFile(filePath, () => {}).then(
+            () => expect(true, 'Should not get here').to.be.false,
+            (msg) => expect(msg).to.be.equal(`Unable to find grammar that matches file: ${filename}`)
+        );
+    });
+
+    it('tests failing to find a grammar for analyse', () => {
+        const filename = 'sample.unknown_ext';
+        const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', filename);
+        analyse(filePath, () => {}).then(
+            () => expect(true, 'Should not get here').to.be.false,
+            (msg) => expect(msg).to.be.equal(`Unable to find grammar that matches file: ${filename}`)
+        );
+    });
 });

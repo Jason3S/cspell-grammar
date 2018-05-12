@@ -3,8 +3,6 @@ import { createColorizer } from './visualize/tokenColorizer';
 import { tokenizeFile, tokenizeToAnsi, Registry } from 'cspell-grammar';
 import { Token } from 'cspell-grammar';
 import * as fs from 'fs-extra';
-import * as yaml from 'js-yaml';
-import * as plist from 'fast-plist';
 import * as syntaxRepository from 'cspell-grammar-syntax';
 import * as path from 'path';
 
@@ -49,19 +47,19 @@ export async function analyse(
     }
 }
 
-export async function pListToYaml(
-    plistFilename: string,
-): Promise<string> {
-    const plistText = await fs.readFile(plistFilename, DEFAULT_ENCODING);
-    return yaml.safeDump(plist.parse(plistText));
-}
+// export async function pListToYaml(
+//     plistFilename: string,
+// ): Promise<string> {
+//     const plistText = await fs.readFile(plistFilename, DEFAULT_ENCODING);
+//     return yaml.safeDump(plist.parse(plistText));
+// }
 
-export async function pListToJson(
-    plistFilename: string,
-): Promise<string> {
-    const plistText = await fs.readFile(plistFilename, DEFAULT_ENCODING);
-    return JSON.stringify(plist.parse(plistText), undefined, 2);
-}
+// export async function pListToJson(
+//     plistFilename: string,
+// ): Promise<string> {
+//     const plistText = await fs.readFile(plistFilename, DEFAULT_ENCODING);
+//     return JSON.stringify(plist.parse(plistText), undefined, 2);
+// }
 
 function loadRegistry(...optionalGrammarFiles: string[]) {
     const grammarFiles = syntaxRepository.getFilenames();
