@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { colorizeFile } from './application';
+import { colorizeFile, analyse } from './application';
 import { create, defaultUpdateFixtures } from './fixtures';
 import * as cacheMap from './util/cacheMap';
 import { Scope } from 'cspell-grammar';
@@ -32,6 +32,17 @@ describe('Validate Application', () => {
             const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', file);
             const fixturePath = fixtureHelper.relativeFixturePath('application', 'colorize', file + '.txt');
             await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
+            const result = await fixtureHelper.compare(fixturePath, output.join(''));
+            expect(result.actual).to.be.equal(result.expected);
+        })
+    );
+
+    tests.forEach(file =>
+        it('tests analyzing a file', async () => {
+            const output: string[] = [];
+            const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', file);
+            const fixturePath = fixtureHelper.relativeFixturePath('application', 'analyze', file + '.txt');
+            await analyse(filePath, line => output.push(line + '\n'));
             const result = await fixtureHelper.compare(fixturePath, output.join(''));
             expect(result.actual).to.be.equal(result.expected);
         })
