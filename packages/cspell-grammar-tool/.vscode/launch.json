@@ -7,9 +7,20 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Run App",
+            "name": "Run App Typescript",
             "program": "${workspaceRoot}/dist/app.js",
-			"args": ["colorize", "--color", "${workspaceRoot}/fixtures/grammar/syntax/TypeScript.tmLanguage.json", "${workspaceRoot}/fixtures/grammar/src/sample.ts"],
+			"args": ["colorize", "--color", "${workspaceRoot}/grammar/TypeScript.tmLanguage.json", "${workspaceRoot}/fixtures/grammar/src/sample.ts"],
+            "cwd": "${workspaceRoot}",
+			"outFiles": [ "${workspaceRoot}/dist/**/*.js" ],
+            "sourceMaps": true,
+            "preLaunchTask": "npm: build"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run App LaTeX",
+            "program": "${workspaceRoot}/dist/app.js",
+			"args": ["colorize", "--color", "${workspaceRoot}/grammar/latex.tmLanguage.json", "${workspaceRoot}/fixtures/grammar/src/sample.tex"],
             "cwd": "${workspaceRoot}",
 			"outFiles": [ "${workspaceRoot}/dist/**/*.js" ],
             "sourceMaps": true,

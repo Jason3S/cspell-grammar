@@ -2,7 +2,7 @@
 
 import * as path from 'path';
 import * as program from 'commander';
-import { colorizeFile, analyse } from './application';
+import { colorizeFile, analyse, pListToJson } from './application';
 const npmPackage = require(path.join(__dirname, '..', 'package.json'));
 
 let showHelp = true;
@@ -19,9 +19,9 @@ program
 program
     .command('colorize')
     .description('Colorize a file')
-    .arguments('<grammar> <file>')
-    .action((grammar: string, file: string) => {
-        colorizeFile(grammar, file, (line: string) => process.stdout.write(line + '\n')).then(
+    .arguments('<file>')
+    .action((file: string) => {
+        colorizeFile(file, (line: string) => process.stdout.write(line + '\n')).then(
             () => { process.exit(0); },
             (reason) => {
                 console.log(reason);
@@ -33,16 +33,25 @@ program
 
 program
     .command('analyze')
-    .description('Colorize a file')
-    .arguments('<grammar> <file>')
-    .action((grammar: string, file: string) => {
-        analyse(grammar, file, (line: string) => process.stdout.write(line + '\n')).then(
+    .description('Analyze a file and output the scope selectors for each line.')
+    .arguments('<file>')
+    .action((file: string) => {
+        analyse(file, (line: string) => process.stdout.write(line + '\n')).then(
             () => { process.exit(0); },
             (reason) => {
                 console.log(reason);
                 process.exit(1);
             }
         );
+        showHelp = false;
+    });
+
+program
+    .command('convert')
+    .description('Convert pList')
+    .arguments('<tmLanguage>')
+    .action((grammar: string) => {
+        pListToJson(grammar).then(text => console.log(text));
         showHelp = false;
     });
 

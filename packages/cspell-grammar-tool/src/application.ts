@@ -1,21 +1,30 @@
 
 import { createColorizer } from './visualize/tokenColorizer';
-import { tokenizeFile, tokenizeToAnsi } from 'cspell-grammar';
+import { tokenizeFile, tokenizeToAnsi, Registry } from 'cspell-grammar';
 import { Token } from 'cspell-grammar';
-import { loadGrammar } from './util/grammarLoader';
 import * as fs from 'fs-extra';
+import * as yaml from 'js-yaml';
+import * as plist from 'fast-plist';
+import * as syntaxRepository from 'cspell-grammar-syntax';
+import * as path from 'path';
+
+const DEFAULT_ENCODING = 'utf-8';
 
 export type Emitter = (line: string) => void;
 
 export type Colorizer = (line: string, tokens: Token[]) => string;
 
 export async function colorizeFile(
-    pathToGrammar: string,
     pathToFile: string,
     emitter: Emitter,
     colorizer: Colorizer = createColorizer(),
 ): Promise<void> {
-    const grammar = await loadGrammar(pathToGrammar);
+    const registry = await loadRegistry();
+    const grammar = registry.getGrammarForFileType(path.extname(pathToFile));
+    if (!grammar) {
+        const msg = `Unable to find grammar that matches file: ${path.basename(pathToFile)}`;
+        return Promise.reject(msg);
+    }
     const result = await tokenizeFile(grammar, pathToFile);
 
     result.tokenizedLines.forEach(value => {
@@ -24,14 +33,37 @@ export async function colorizeFile(
 }
 
 export async function analyse(
-    pathToGrammar: string,
     pathToFile: string,
     emitter: Emitter,
 ): Promise<void> {
-    const grammar = await loadGrammar(pathToGrammar);
-    const text = await fs.readFile(pathToFile, 'utf-8');
+    const text = await fs.readFile(pathToFile, DEFAULT_ENCODING);
+    const registry = await loadRegistry();
+    const grammar = registry.getGrammarForFileType(path.extname(pathToFile));
+    if (!grammar) {
+        const msg = `Unable to find grammar that matches file: ${path.basename(pathToFile)}`;
+        return Promise.reject(msg);
+    }
 
     for (const line of tokenizeToAnsi.tokenizeText(grammar, a => a, text)) {
         emitter(line);
     }
+}
+
+export async function pListToYaml(
+    plistFilename: string,
+): Promise<string> {
+    const plistText = await fs.readFile(plistFilename, DEFAULT_ENCODING);
+    return yaml.safeDump(plist.parse(plistText));
+}
+
+export async function pListToJson(
+    plistFilename: string,
+): Promise<string> {
+    const plistText = await fs.readFile(plistFilename, DEFAULT_ENCODING);
+    return JSON.stringify(plist.parse(plistText), undefined, 2);
+}
+
+function loadRegistry(...optionalGrammarFiles: string[]) {
+    const grammarFiles = syntaxRepository.getFilenames();
+    return Registry.create(grammarFiles.concat(optionalGrammarFiles));
 }

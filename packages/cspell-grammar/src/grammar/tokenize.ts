@@ -1,10 +1,15 @@
 import { GrammarDefinition, Pattern, RegexOrString, Capture, PatternName } from './grammarDefinition';
-import { isPatternInclude, isPatternMatch, isPatternBeginEnd, scope, captures, endCaptures, isPatternName } from './pattern';
+import { isPatternInclude, isPatternMatch, isPatternBeginEnd, scope, captures, endCaptures, isPatternName, patternToString } from './pattern';
 import * as XRegExp from 'xregexp';
 import { escapeMatch, MatchOffsetResult, matchesToOffsets } from './regexpUtil';
 import { create } from '../util/cacheMap';
 
 const maxDepth = 100;
+const useLogging = false;
+
+function logInfo(message: string) {
+    useLogging && console.log(message);
+}
 
 export interface TokenizeLineResult {
     tokens: Token[];
@@ -115,11 +120,26 @@ export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
 }
 
 export function matchRule(text: string, offset: number, rule: Rule): MatchResult {
+    let result: MatchResult | undefined;
+    try {
+        logInfo(`${'.'.repeat(rule.depth)}+${rule.depth} ${patternToString(rule.pattern)} test`);
+        result = matchRuleInner(text, offset, rule);
+        return result;
+    } finally {
+        const msg = result
+            ? (result.match ? `match ${result.match.length}` : 'non-match')
+            : 'failed';
+        logInfo(`${'.'.repeat(rule.depth)}+${rule.depth} ${patternToString(rule.pattern)} result ${msg}`);
+    }
+}
+
+
+function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
     const { pattern, depth, grammarDef } = rule;
     if ( isPatternInclude(pattern) ) {
         if (depth < maxDepth && grammarDef.repository) {
             const name = pattern.include.slice(1);
-            const result = grammarDef.repository[name];
+            const result = pattern._reference || grammarDef.repository[name];
             if (result) {
                 return matchRule(text, offset, {
                     grammarDef,
@@ -134,6 +154,7 @@ export function matchRule(text: string, offset: number, rule: Rule): MatchResult
                 return matchRule(text, offset, grammarToRule(grammarDef, rule));
             }
             // We do not support including other grammars yet.
+            console.log(`Unknown include: (${name})`);
         }
         return { rule }; // Unsupported include, match nothing.
     }

@@ -63,3 +63,20 @@ export function endCaptures(pattern: Pattern): Capture | undefined {
     }
     return undefined;
 }
+
+export function patternToString(pattern: PatternMatch | PatternBeginEnd | PatternInclude | PatternPatterns | PatternName): string {
+    if (isPatternMatch(pattern)) {
+        return `PatternMatch: ${pattern.name || '?'} (${pattern.match.toString()})`;
+    }
+    if (isPatternBeginEnd(pattern)) {
+        return `PatternBeginEnd: ${pattern.name || '?'} (${pattern.begin.toString()})`;
+    }
+    if (isPatternPatterns(pattern)) {
+        return `PatternPatterns: ${pattern.name || '?'} [${pattern.patterns.length}]`;
+    }
+    if (isPatternInclude(pattern)) {
+        return `PatternInclude: ${pattern.name || '?'} (${pattern.include})`;
+    }
+    // pattern name
+    return `PatternName: ${pattern.name || '?'}`;
+}

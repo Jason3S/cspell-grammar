@@ -7,7 +7,7 @@ export interface GrammarDefinition extends PatternPatterns {
     scopeName: Scope;           // The scope to use.
     fileTypes: string[];        // This is an array of file type extensions that the grammar should (by default) be used with.
     patterns: Pattern[];        // Patterns to use for the grammar
-    repository?: Repository;    // Dictionary of patterns
+    repository: Repository;    // Dictionary of patterns
 }
 
 export type Pattern = PatternMatch | PatternBeginEnd | PatternInclude | PatternPatterns | PatternName;
@@ -40,6 +40,7 @@ export interface PatternInclude extends PatternBase {
      */
     include: string;
     comment?: string;           // comment to help with understanding
+    _reference?: Pattern;       // resolved include reference. Not persisted in grammar files.
 }
 
 export interface PatternPatterns extends PatternBase {
@@ -66,6 +67,10 @@ export interface Capture {
 
 export interface Repository {
     [index: string]: Pattern;
+    // Special repository patterns
+    // These are not persisted.
+    // $self?: GrammarDefinition;
+    // $base?: GrammarDefinition;
 }
 
 /**

@@ -7,7 +7,7 @@
 		<string>tex</string>
 	</array>
 	<key>firstLineMatch</key>
-	<string>^\\documentclass(?!.*\{beamer\})</string>
+	<string>^\\documentclass(\[.*\])?\{.*\}</string>
 	<key>keyEquivalent</key>
 	<string>^~L</string>
 	<key>name</key>
@@ -24,7 +24,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((\\)(?:usepackage|documentclass))(?:(\[)([^\]]*)(\]))?(\{)</string>
+			<string>((\\)(?:usepackage|documentclass))((?:\[[^\[]*?\])*)(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -39,20 +39,15 @@
 				</dict>
 				<key>3</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>variable.parameter.latex</string>
-				</dict>
-				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.end.latex</string>
-				</dict>
-				<key>6</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
@@ -133,12 +128,11 @@
 					  | (?:sub)?paragraph
 					  | chapter|part|addpart
 					  | addchap|addsec|minisec
+					  | frametitle									# only for Beamer
 					)
 					(?:\*)?											# Optional Unnumbered
 				)
-				(?:
-					(\[)([^\[]*?)(\])								# Optional Title
-				)??
+				((?:\[[^\[]*?\]){0,2})
 				(\{)												# Opening Bracket
 				</string>
 			<key>beginCaptures</key>
@@ -155,20 +149,15 @@
 				</dict>
 				<key>4</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.section.latex</string>
-				</dict>
-				<key>6</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.end.latex</string>
-				</dict>
-				<key>7</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
@@ -194,13 +183,17 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>$self</string>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^\s*)?(?=\\begin\{lstlisting\})</string>
+			<string>(^\s*)?(?=\\begin\{(lstlisting|minted)\})</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -223,7 +216,58 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Java)\n?))</string>
+					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?)</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>meta.function.embedded.latex</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.be.latex</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.function.latex</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.begin.latex</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.function.latex</string>
+						</dict>
+						<key>6</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.end.latex</string>
+						</dict>
+						<key>7</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.optional.begin.latex</string>
+						</dict>
+						<key>8</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.optional.end.latex</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>meta.function.embedded.latex</string>
+					<key>end</key>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Java)\n?))</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -275,16 +319,16 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 					<key>name</key>
 					<string>meta.embedded.block.java</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>^(?!\\end\{lstlisting\})</string>
+							<string>^(?!\\end\{lstlisting|minted\})</string>
 							<key>end</key>
-							<string>(?=\\end\{lstlisting\})</string>
+							<string>(?=\\end\{lstlisting|minted\})</string>
 							<key>name</key>
 							<string>source.java</string>
 							<key>patterns</key>
@@ -299,7 +343,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Python)\n?))</string>
+					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Python)\n?))</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -351,16 +395,16 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 					<key>name</key>
 					<string>meta.embedded.block.python</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>^(?!\\end\{lstlisting\})</string>
+							<string>^(?!\\end\{(lstlisting|minted)\})</string>
 							<key>end</key>
-							<string>(?=\\end\{lstlisting\})</string>
+							<string>(?=\\end\{(lstlisting|minted)\})</string>
 							<key>name</key>
 							<string>source.python</string>
 							<key>patterns</key>
@@ -375,7 +419,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?(\s*%.*\n?)?</string>
+					<string>((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%.*\n?)?</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -427,7 +471,7 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 					<key>name</key>
 					<string>meta.embedded.block.generic</string>
 				</dict>
@@ -435,7 +479,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?:\s*)((\\)begin)(\{)((?:V|v)erbatim|alltt)(\})</string>
+			<string>(?:\s*)((\\)begin)(\{)((?:fboxv|boxedv|V|v)erbatim)(\})</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -466,6 +510,99 @@
 			</dict>
 			<key>contentName</key>
 			<string>markup.raw.verbatim.latex</string>
+			<key>end</key>
+			<string>((\\)end)(\{)(\4)(\})</string>
+			<key>name</key>
+			<string>meta.function.verbatim.latex</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?:\s*)((\\)begin)(\{)(alltt)(\})</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>markup.raw.verbatim.latex</string>
+			<key>end</key>
+			<string>((\\)end)(\{)(alltt)(\})</string>
+			<key>name</key>
+			<string>meta.function.alltt.latex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.function.tex</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\\)[A-Za-z]+</string>
+					<key>name</key>
+					<string>support.function.general.tex</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?:\s*)((\\)begin)(\{)((?:C|c)omment)(\})</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>punctuation.definition.comment.tex</string>
 			<key>end</key>
 			<string>((\\)end)(\{)(\4)(\})</string>
 			<key>name</key>
@@ -586,6 +723,7 @@
 								align|equation|eqnarray			# Argument
 							  | multline|aligned|alignat
 							  | split|gather|gathered
+							  | cases
 							)
 							(?:\*)?								# Optional Unnumbered
 						)
@@ -621,7 +759,7 @@
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>string.other.math.block.environment.latex</string>
+			<string>support.class.math.block.environment.latex</string>
 			<key>end</key>
 			<string>(?x)
 					(?:\s*)										# Optional whitespace
@@ -635,6 +773,10 @@
 			<string>meta.function.environment.math.latex</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#math</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
@@ -760,7 +902,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.begin.latex</string>
 				</dict>
 				<key>4</key>
 				<dict>
@@ -770,7 +912,7 @@
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.end.latex</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -803,7 +945,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.begin.latex</string>
 				</dict>
 				<key>4</key>
 				<dict>
@@ -813,7 +955,7 @@
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.end.latex</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -825,6 +967,49 @@
 				<dict>
 					<key>include</key>
 					<string>text.tex.latex</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?:\s*)((\\)begin)(\{)(frame)(\})</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>((\\)end)(\{)(frame)(\})</string>
+			<key>name</key>
+			<string>meta.function.environment.frame.latex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
 				</dict>
 			</array>
 		</dict>
@@ -846,7 +1031,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.begin.latex</string>
 				</dict>
 				<key>4</key>
 				<dict>
@@ -856,7 +1041,7 @@
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.end.latex</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -887,7 +1072,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((\\)marginpar)(\{)</string>
+			<string>((\\)marginpar)((?:\[[^\[]*?\])*)(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -901,6 +1086,16 @@
 					<string>punctuation.definition.function.latex</string>
 				</dict>
 				<key>3</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
+				</dict>
+				<key>4</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.marginpar.begin.latex</string>
@@ -920,6 +1115,10 @@
 			</dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
@@ -946,26 +1145,8 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.arguments.begin.latex</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.latex</string>
-								</dict>
-								<key>3</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.arguments.end.latex</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>(\[)([^\[]*?)(\])</string>
+							<key>include</key>
+							<string>#optional-arg</string>
 						</dict>
 					</array>
 				</dict>
@@ -989,6 +1170,10 @@
 			</dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
@@ -1032,6 +1217,10 @@
 			<string>meta.function.emph.latex</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
@@ -1081,6 +1270,10 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			<array>
 				<dict>
 					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>$base</string>
 				</dict>
 			</array>
@@ -1124,6 +1317,10 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			<array>
 				<dict>
 					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>$base</string>
 				</dict>
 			</array>
@@ -1165,6 +1362,10 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			<string>meta.function.texttt.latex</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#braces</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
@@ -1239,7 +1440,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				<key>7</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.begin.latex</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -1249,7 +1450,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.latex</string>
+					<string>punctuation.definition.arguments.begin.latex</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -1439,37 +1640,6 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>"`</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.latex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>"'</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.latex</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.double.european.latex</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$base</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
 			<string>``</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -1501,68 +1671,6 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>"&gt;</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.latex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>"&lt;</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.latex</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.double.guillemot.latex</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$base</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>"&lt;</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.latex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>"&gt;</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.latex</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.double.guillemot.latex</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$base</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
 			<string>\\\(</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -1583,9 +1691,13 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>string.other.math.latex</string>
+			<string>support.class.math.latex</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#math</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
@@ -1614,26 +1726,18 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>string.other.math.latex</string>
+			<string>support.class.math.latex</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>text.tex#math</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;!\S)'.*?'</string>
-			<key>name</key>
-			<string>invalid.illegal.string.quoted.single.latex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;!\S)".*?"</string>
-			<key>name</key>
-			<string>invalid.illegal.string.quoted.double.latex</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -1673,6 +1777,37 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			<string>text.tex</string>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>optional-arg</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.optional.arguments.begin.latex</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.latex</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.optional.arguments.end.latex</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\[)([^\[]*?)(\])</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>text.tex.latex</string>
 	<key>uuid</key>

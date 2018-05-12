@@ -4,7 +4,6 @@ import { create, defaultUpdateFixtures } from './fixtures';
 import * as cacheMap from './util/cacheMap';
 import { Scope } from 'cspell-grammar';
 import { createColorizer } from './visualize';
-import { pathToGrammar } from './grammarFiles';
 
 const forceFixtureUpdate = false;
 const updateFixtures = defaultUpdateFixtures || forceFixtureUpdate;
@@ -13,8 +12,8 @@ fixtureHelper.enableWriteBack = updateFixtures;
 
 describe('Validate Application', () => {
     const tests = [
-        ['sample.js', 'javascript.tmLanguage.json'],
-        ['sample.ts', 'TypeScript.tmLanguage.json'],
+        'sample.js',
+        'sample.ts',
     ];
 
     const scopeCache = cacheMap.create((scope: string) => {
@@ -27,16 +26,14 @@ describe('Validate Application', () => {
         return scopeCache.get(scope)(text);
     }
 
-    tests.forEach(([file, grammar]) =>
+    tests.forEach((file) =>
         it('Tests colorizing a file', async () => {
             const output: string[] = [];
-            const grammarPath = pathToGrammar(grammar);
             const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', file);
             const fixturePath = fixtureHelper.relativeFixturePath('application', 'colorize', file + '.txt');
-            await colorizeFile(grammarPath, filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
+            await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
             const result = await fixtureHelper.compare(fixturePath, output.join(''));
             expect(result.actual).to.be.equal(result.expected);
         })
     );
-
 });
