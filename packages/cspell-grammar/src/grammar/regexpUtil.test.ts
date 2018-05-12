@@ -41,6 +41,25 @@ describe('Validate Tokenizer', () => {
     });
 
 
+    it('tests unmatched groups', () => {
+        const t = 'one two three';
+        const m = XRegExp.exec(t, XRegExp('(?<first>\\w*(?<s1>\\w)) (?:(?<second>\\w+)|(\\d+)) (?<third>\\w+)'), 0);
+        const r = matchesToOffsets(m);
+        expect(r).to.include.all.keys(['first', 'second', 'third']);
+        expect([...r.entries()]).to.deep.equal([
+            ['0', { begin: 0, end: t.length }],
+            ['1', { begin: 0, end: 3 }],
+            ['2', { begin: 2, end: 3 }],
+            ['3', { begin: 4, end: 7 }],
+            // ['4', { begin: 8, end: 13 }], <-- missing on purpose, part of the OR
+            ['5', { begin: 8, end: 13 }],  // <-- Note: it is not possible to guess the exact match offset.
+            ['first',  { begin: 0, end: 3 }],
+            ['s1',     { begin: 2, end: 3 }],
+            ['second', { begin: 4, end: 7 }],
+            ['third',  { begin: 8, end: 13 }],
+        ]);
+    });
+
 });
 
 

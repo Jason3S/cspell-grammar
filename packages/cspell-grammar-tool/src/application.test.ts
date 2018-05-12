@@ -37,6 +37,14 @@ describe('Validate Application', () => {
         })
     );
 
+    it('Tests colorizing a file', async () => {
+        const output: string[] = [];
+        const filePath = require.resolve('./application');
+        await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
+        expect(output.length).to.be.greaterThan(0);
+    });
+
+
     tests.forEach(file =>
         it('tests analyzing a file', async () => {
             const output: string[] = [];

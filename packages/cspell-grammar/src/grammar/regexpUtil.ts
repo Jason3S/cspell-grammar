@@ -97,6 +97,7 @@ export function matchesToOffsets(match: RegExpExecArray): MatchOffsetResult {
     // Take care of named groups
     offset = match.index;
     for (const [k, s] of Object.entries(match!)) {
+        if (s === undefined) { continue; }
         if (m.has(k) || skip.has(k)) { continue; }
         let begin = text.indexOf(s, offset);
         if (begin < 0) {
