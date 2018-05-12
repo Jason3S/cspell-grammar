@@ -6,6 +6,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p .",
+    "prepare": "npm run build",
     "test": "mocha --recursive \"dist/**/*.test.js\""
   },
   "repository": {
