@@ -1,11 +1,10 @@
-import chalk from 'chalk';
 import { expect } from 'chai';
-import { createDefaultColorMap, createScopeColorizer } from './tokenColorizer';
+import { createDefaultColorMap, createScopeColorizer, createColorizer, createDefaultColorApplicator, ColorApplicator } from './tokenColorizer';
+import { Token } from '..';
 
 describe('Validate tokenColorizer', () => {
     it('createDefaultColorMap', () => {
-        const ctx = new chalk.constructor({level: 0});
-        const map = createDefaultColorMap(ctx);
+        const map = createDefaultColorMap(createDefaultColorApplicator());
         expect(map.defaultColorizer('hello')).to.be.equal('hello');
     });
 
@@ -14,18 +13,66 @@ describe('Validate tokenColorizer', () => {
         expect(colorizer('hello', 'title')).to.contain('hello');
     });
 
-    it('test createScopeColorizer level 0', () => {
-        const ctx = new chalk.constructor({level: 0});
-        const map = createDefaultColorMap(ctx);
-        const colorizer = createScopeColorizer(map);
+    it('test createScopeColorizer', () => {
+        const colorizer = createScopeColorizer();
         expect(colorizer('hello', 'title')).to.equal('hello');
     });
 
-    it('test createScopeColorizer level 3', () => {
-        const ctx = new chalk.constructor({level: 3});
-        const map = createDefaultColorMap(ctx);
+    it('test createScopeColorizer', () => {
+        const applicator = createDefaultColorApplicator();
+        const map = createDefaultColorMap(wrapColorApplicator(applicator));
         const colorizer = createScopeColorizer(map);
         expect(colorizer('hello', 'title')).to.contain('hello');
         expect(colorizer('hello', 'title')).to.not.equal('hello');
     });
+
+    it('test createColorizer', () => {
+        const scopeColorizer = createScopeColorizer();
+        const colorizer = createColorizer(scopeColorizer);
+        const line = 'var a := 5;';
+        const tokens: Token[] = [
+            {
+                startIndex: 0,
+                endIndex: 4,
+                scopes: ['source.x'],
+            },
+            {
+                startIndex: 4,
+                endIndex: 5,
+                scopes: ['source.x'],
+            },
+            {
+                startIndex: 5,
+                endIndex: 6,
+                scopes: ['source.x', 'variable.source.x'],
+            },
+            {
+                startIndex: 7,
+                endIndex: 9,
+                scopes: ['source.x'],
+            },
+        ];
+        const r = colorizer(line, tokens);
+        expect(r).to.be.equal(line);
+    });
+
+    function wrapColorApplicator(app: ColorApplicator): ColorApplicator {
+        function makeWrapper(fn: (...text: string[]) => string, app: ColorApplicator): ColorApplicator {
+            const wrapper = Object.setPrototypeOf(fn, app);
+            const colors: (keyof ColorApplicator)[] = ['yellow', 'green', 'red', 'blue', 'dim'];
+            for (const key of colors) {
+                doGetter(wrapper, key);
+            }
+            return wrapper;
+        }
+
+        function doGetter(wrapper: ColorApplicator, key: keyof ColorApplicator) {
+            Object.defineProperty(wrapper, key, {
+                get: () => makeWrapper((...text: string[]) => `${key}[${wrapper(...text)}]`, wrapper)
+            });
+        }
+
+        const wrapper = makeWrapper((...text: string[]) => text.join(''), app);
+        return wrapper;
+    }
 });

@@ -8,7 +8,7 @@ export async function loadGrammar(pathToGrammar: string): Promise<GrammarDefinit
 
     const def = tryPList(grammarContents) || tryJsonOrYaml(grammarContents);
 
-    if (!def) {
+    if (!def || typeof def !== 'object') {
         return Promise.reject(`Unable to load grammar file: "${pathToGrammar}"`);
     }
     return def;

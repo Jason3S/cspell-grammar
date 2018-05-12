@@ -1,4 +1,3 @@
-import chalk, { Chalk } from 'chalk';
 import { create } from '../util/cacheMap';
 import { Scope, Token } from '../grammar';
 import { ScopeColorizer, LineColorizer } from './types';
@@ -12,7 +11,8 @@ export interface ScopeColorizerDefinition {
     defaultColorizer: ColorTextFn;
 }
 
-const defaultColorDef = createDefaultColorMap(chalk);
+const defaultColorApplicator = createDefaultColorApplicator();
+const defaultColorDef = createDefaultColorMap(defaultColorApplicator);
 
 export function createScopeColorizer(colorDef: ScopeColorizerDefinition = defaultColorDef): ScopeColorizer {
     const { colorMap, defaultColorizer } = colorDef;
@@ -53,7 +53,20 @@ export function createColorizer(scopeColorizer = createScopeColorizer(defaultCol
     };
 }
 
-export function createDefaultColorMap(chalk: Chalk): ScopeColorizerDefinition {
+export interface ColorApplicator {
+    (...text: string[]): string;
+    red: ColorApplicator;
+    green: ColorApplicator;
+    yellow: ColorApplicator;
+    blue: ColorApplicator;
+    greenBright: ColorApplicator;
+    yellowBright: ColorApplicator;
+    dim: ColorApplicator;
+    gray: ColorApplicator;
+    bgHex: (hex: string) => ColorApplicator;
+}
+
+export function createDefaultColorMap(chalk: ColorApplicator): ScopeColorizerDefinition {
     const baseColor = chalk.bgHex(bgColor);
 
     const colorMap: ColorMap = [
@@ -64,7 +77,7 @@ export function createDefaultColorMap(chalk: Chalk): ScopeColorizerDefinition {
         [/comment/, baseColor.dim.green],
         [/ punctuation/, baseColor.yellow],
         [/support.function/, baseColor.greenBright],
-        [/^source$/, baseColor.gray],
+        [/^source/, baseColor.gray],
         [/^title$/, baseColor.dim],
     ];
 
@@ -74,4 +87,19 @@ export function createDefaultColorMap(chalk: Chalk): ScopeColorizerDefinition {
         colorMap,
         defaultColorizer,
     };
+}
+
+export function createDefaultColorApplicator(): ColorApplicator {
+    const applicator = ((...text: string[]) => text.join('')) as ColorApplicator;
+    applicator.red = applicator;
+    applicator.green = applicator;
+    applicator.yellow = applicator;
+    applicator.blue = applicator;
+    applicator.greenBright = applicator;
+    applicator.yellowBright = applicator;
+    applicator.dim = applicator;
+    applicator.gray = applicator;
+    applicator.bgHex = function() { return this; };
+
+    return applicator;
 }

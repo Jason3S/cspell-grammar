@@ -10,4 +10,12 @@ describe('test grammar file loader', () => {
             expect(g).to.not.be.empty;
         });
     });
+
+    it('tests failing to load the syntax files', async () => {
+        const files = [ __filename];
+        return Promise.all(files.map(grammarFiles.loadGrammar)).then(
+            () => expect.fail(),
+            (msg) => expect(msg).to.be.equal(`Unable to load grammar file: "${__filename}"`),
+        );
+    });
 });
