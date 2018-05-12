@@ -1,0 +1,37 @@
+{
+  "name": "cspell-grammar-syntax",
+  "version": "0.1.0",
+  "description": "tmLangauge syntax files for use with cspell-grammar",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jason3S/cspell-grammar.git"
+  },
+  "keywords": [
+    "cspell",
+    "tmLanguage",
+    "grammar",
+    "syntax",
+    "parse"
+  ],
+  "author": "Jason Dent",
+  "license": "MIT",
+  "files": [
+    "dist/**",
+    "syntax/**"
+  ],
+  "bugs": {
+    "url": "https://github.com/Jason3S/cspell-grammar/issues"
+  },
+  "homepage": "https://github.com/Jason3S/cspell-grammar#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^8.10.14",
+    "typescript": "^2.8.3"
+  }
+}
