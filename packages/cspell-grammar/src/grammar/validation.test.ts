@@ -4,6 +4,8 @@ import { Registry } from '.';
 import { Registry as VSCodeRegistry, ITokenizeLineResult } from 'vscode-textmate';
 import * as Fixtures from '../fixtures';
 import * as path from 'path';
+import * as seq from 'gensequence';
+import { TokenizeLineResult } from './grammar';
 
 const registryPromise = loadRegistry();
 const vsCodeRegistry = loadVSCodeRegistry();
@@ -27,12 +29,11 @@ describe('Validate against vscode-textmate', function() {
             const tokenizedLines = tokenizeText(registry, text, scopeName);
             const vsCodeResults = tokenizeVSCode(vsCodeRegistry, text, scopeName);
 
-            for (let i = 0; i < tokenizedLines.length; ++i) {
-                const a = tokenizedLines[i];
-                const b = vsCodeResults[i];
-
+            seq.genSequence(tokenizedLines)
+            .combine((a, b) => [a, b!] as [TokenizeLineResult, ITokenizeLineResult], vsCodeResults)
+            .forEach(([a, b]) => {
                 if (a.line === '') {
-                    continue;
+                    return;
                 }
 
                 // const aScopes = a.tokens.map(t => `${t.startIndex}-${t.endIndex} ${t.scopes.join(' ')}`);
@@ -40,7 +41,7 @@ describe('Validate against vscode-textmate', function() {
                 const aScopes = a.tokens.map(t => t.scopes.join(' '));
                 const bScopes = b.tokens.map(t => t.scopes.join(' '));
                 expect(aScopes, `${a.lineNumber} [${a.line}]`).to.be.deep.equal(bScopes);
-            }
+            });
         });
     }
 
@@ -49,19 +50,16 @@ describe('Validate against vscode-textmate', function() {
     }
 });
 
-function tokenizeVSCode(vsCodeRegistry: VSCodeRegistry, text: string, scopeName: string) {
+function* tokenizeVSCode(vsCodeRegistry: VSCodeRegistry, text: string, scopeName: string) {
     const grammar = vsCodeRegistry.grammarForScopeName(scopeName);
     const lines = text.split('\n');
 
     let ruleStack: any = null;
-    const results: ITokenizeLineResult[] = [];
     for (const line of lines) {
         const r = grammar.tokenizeLine(line, ruleStack);
         ruleStack = r.ruleStack;
-        results.push(r);
+        yield r;
     }
-
-    return results;
 }
 
 async function loadRegistry(...optionalGrammarFiles: string[]) {
@@ -78,7 +76,7 @@ function loadVSCodeRegistry(...optionalGrammarFiles: string[]) {
     return registry;
 }
 
-function tokenizeText(registry: Registry, text: string, scopeName: string) {
+function* tokenizeText(registry: Registry, text: string, scopeName: string) {
     const grammar = registry.getGrammarForScope(scopeName)!;
-    return [...grammar.tokenizeLines(text.split(/\r?\n/))];
+    yield *grammar.tokenizeLines(text.split(/\r?\n/));
 }
