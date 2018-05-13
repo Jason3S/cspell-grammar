@@ -7,7 +7,7 @@ const files = [
     "syntax/latex/LaTeX Expl3.plist",
     "syntax/latex/LaTeX.plist",
     "syntax/latex/TeX.plist",
-    "syntax/textpow/syntax/source.smarty.syntax",
+    "syntax/textpow/syntax/source.smarty.json",
     "syntax/vscode/go.tmLanguage.json",
     "syntax/vscode/html.tmLanguage.json",
     "syntax/vscode/java.tmLanguage.json",

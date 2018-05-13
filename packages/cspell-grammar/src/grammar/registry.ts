@@ -26,6 +26,10 @@ export class Registry {
         return this.fileTypeMap.get(this.normalizeFileType(fileType));
     }
 
+    public getGrammarForScope(scope: string) {
+        return this.scopeMap.get(scope);
+    }
+
     static async create(grammarFileNames: string[]): Promise<Registry> {
         const pGrammars = grammarFileNames
             .map(loadGrammar)

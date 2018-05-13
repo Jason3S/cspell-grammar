@@ -62,8 +62,9 @@ export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
                 tokens.push({ startIndex: offset, endIndex: match.index, scopes: extractScopes(rule) });
             }
             tokens.push(...tokenizeCapture(matchingRule, match, captures(matchingRule.pattern)));
-            logInfo(`Last Scoep: ${tokens.length ? tokens[tokens.length - 1].scopes.join(' ') : ''}`);
+            logInfo(`Last Scope: ${tokens.length ? tokens[tokens.length - 1].scopes.join(' ') : ''}`);
             offset = match.index + match[0].length;
+            const testEndFromOffset = offset + (match[0].length ? 0 : 1);
             const pattern = matchingRule.pattern;
             if (isPatternBeginEnd(pattern)) {
                 rule = {
@@ -77,7 +78,7 @@ export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
                 };
                 end = rule.end;
                 try {
-                    endMatch = end ? XRegExp.exec(text, end, offset) : undefined;
+                    endMatch = end ? XRegExp.exec(text, end, testEndFromOffset) : undefined;
                     endOffset = endMatch ? endMatch.index : text.length;
                 } catch (e) {
                     console.log(e);
