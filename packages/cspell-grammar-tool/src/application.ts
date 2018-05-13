@@ -1,5 +1,12 @@
-
-import { tokenizeFile, tokenizeToAnsi, Registry, createColorizer } from 'cspell-grammar';
+import chalk from 'chalk';
+import {
+    createColorizer,
+    createDefaultColorMap,
+    createScopeColorizer,
+    Registry,
+    tokenizeFile,
+    tokenizeToAnsi,
+} from 'cspell-grammar';
 import { Token } from 'cspell-grammar';
 import * as fs from 'fs-extra';
 import * as syntaxRepository from 'cspell-grammar-syntax';
@@ -11,10 +18,13 @@ export type Emitter = (line: string) => void;
 
 export type Colorizer = (line: string, tokens: Token[]) => string;
 
+const defaultScopeColorizer = createScopeColorizer(createDefaultColorMap(chalk));
+const defaultColorizer = createColorizer(defaultScopeColorizer);
+
 export async function colorizeFile(
     pathToFile: string,
     emitter: Emitter,
-    colorizer: Colorizer = createColorizer(),
+    colorizer: Colorizer = defaultColorizer,
 ): Promise<void> {
     const registry = await loadRegistry();
     const grammar = registry.getGrammarForFileType(path.extname(pathToFile));
@@ -41,7 +51,7 @@ export async function analyse(
         return Promise.reject(msg);
     }
 
-    for (const line of tokenizeToAnsi.tokenizeText(grammar, a => a, text)) {
+    for (const line of tokenizeToAnsi.tokenizeText(grammar, defaultScopeColorizer, text)) {
         emitter(line);
     }
 }
