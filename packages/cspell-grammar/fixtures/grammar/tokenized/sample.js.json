@@ -14096,7 +14096,6 @@
             "meta.function.js",
             "meta.block.js",
             "meta.var.expr.js",
-            "meta.arrow.js",
             "variable.other.readwrite.js"
           ]
         },

@@ -21,8 +21,7 @@ function toFixturePath(name: string) {
     return fixtureHelper.relativeFixturePath('grammar', 'tokenized', name);
 }
 
-describe('Validate tokenizeFile', function () {
-    this.timeout(60000);
+describe('Validate tokenizeFile', async function () {
     const grammarCache = cacheMap.create((grammarName: string) => {
         return Grammar.createFromFile(pathToSyntax(grammarName));
     });
@@ -35,9 +34,8 @@ describe('Validate tokenizeFile', function () {
         ['sample.js', 'javascript.tmLanguage.json'],
         ['sample.ts', 'TypeScript.tmLanguage.json'],
     ];
-    tests.length = 0;
 
-    for (const [sampleFile, grammarName] of tests) {
+    function testFile(sampleFile: string, grammarName: string) {
         it(`test tokenizeFile ${sampleFile}`, async () => {
             const grammar = await fetchGrammar(grammarName)!;
             const fixtureName = sampleFile + '.json';
@@ -47,6 +45,10 @@ describe('Validate tokenizeFile', function () {
             const comp = await fixtureHelper.compare(toFixturePath(fixtureName), json);
             expect(comp.actual).to.be.equal(comp.expected);
         });
+    }
+
+    for (const [sampleFile, grammarName] of tests) {
+        testFile(sampleFile, grammarName);
     }
 });
 

@@ -10,7 +10,6 @@ const vsCodeRegistry = loadVSCodeRegistry();
 const fixtures = Fixtures.create();
 
 describe('Validate against vscode-textmate', function() {
-    this.timeout(60000);
 
     const tests = [
         ['sample.js', 'source.js'],
@@ -20,7 +19,7 @@ describe('Validate against vscode-textmate', function() {
         // ['sample.tex', 'text.tex.latex'],
     ];
 
-    for (const [sampleFile, scopeName] of tests) {
+    function testFile(sampleFile: string, scopeName: string) {
         it(`test tokenizeFile ${sampleFile}`, async () => {
             const fullPath = path.join('grammar', 'src', sampleFile);
             const registry = await registryPromise;
@@ -43,6 +42,10 @@ describe('Validate against vscode-textmate', function() {
                 expect(aScopes, `${a.lineNumber} [${a.line}]`).to.be.deep.equal(bScopes);
             }
         });
+    }
+
+    for (const [sampleFile, scopeName] of tests) {
+        testFile(sampleFile, scopeName);
     }
 });
 
