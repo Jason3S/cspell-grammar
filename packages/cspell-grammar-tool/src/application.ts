@@ -1,6 +1,5 @@
 
-import { createColorizer } from './visualize/tokenColorizer';
-import { tokenizeFile, tokenizeToAnsi, Registry } from 'cspell-grammar';
+import { tokenizeFile, tokenizeToAnsi, Registry, createColorizer } from 'cspell-grammar';
 import { Token } from 'cspell-grammar';
 import * as fs from 'fs-extra';
 import * as syntaxRepository from 'cspell-grammar-syntax';

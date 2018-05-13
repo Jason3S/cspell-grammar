@@ -2,8 +2,7 @@ import { expect } from 'chai';
 import { colorizeFile, analyse } from './application';
 import { create, defaultUpdateFixtures } from './fixtures';
 import * as cacheMap from './util/cacheMap';
-import { Scope } from 'cspell-grammar';
-import { createColorizer } from './visualize';
+import { Scope, createColorizer } from 'cspell-grammar';
 
 const forceFixtureUpdate = false;
 const updateFixtures = defaultUpdateFixtures || forceFixtureUpdate;
