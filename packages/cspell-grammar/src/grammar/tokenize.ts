@@ -47,18 +47,22 @@ export interface MatchResult {
 }
 
 export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
+    logInfo(`\n${text}\n`);
     const tokens: Token[] = [];
     let offset = 0;
     let end = rule.end;
     let endMatch = end ? XRegExp.exec(text, end, offset) : undefined;
     let endOffset = endMatch ? endMatch.index : text.length;
     while (offset < text.length) {
+        logInfo(`Ends at ${endOffset}/${text.length} [${endMatch ? endMatch[0] : '-'}] ${extractScopes(rule).join(' ')}`);
         const { match, rule: matchingRule } = matchRule(text, offset, rule);
-        if (match && match.index <= endOffset) {
+        if (match && match.index < endOffset) {
+            logInfo(`\nMatch at ${match.index} ${match[0]}`);
             if (match.index > offset) {
                 tokens.push({ startIndex: offset, endIndex: match.index, scopes: extractScopes(rule) });
             }
             tokens.push(...tokenizeCapture(matchingRule, match, captures(matchingRule.pattern)));
+            logInfo(`Last Scoep: ${tokens.length ? tokens[tokens.length - 1].scopes.join(' ') : ''}`);
             offset = match.index + match[0].length;
             const pattern = matchingRule.pattern;
             if (isPatternBeginEnd(pattern)) {
@@ -127,7 +131,7 @@ export function matchRule(text: string, offset: number, rule: Rule): MatchResult
         return result;
     } finally {
         const msg = result
-            ? (result.match ? `match ${result.match.length}` : 'non-match')
+            ? (result.match ? `match at ${result.match.index} <${result.match.toString()}>` : 'non-match')
             : 'failed';
         logInfo(`${'.'.repeat(rule.depth)}+${rule.depth} ${patternToString(rule.pattern)} result ${msg}`);
     }

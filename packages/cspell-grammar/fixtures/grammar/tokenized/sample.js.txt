@@ -1682,7 +1682,7 @@ sample.js
               =>  source.js meta.function.js meta.block.js meta.var.expr.js meta.arrow.js
   =>          =>  source.js meta.function.js meta.block.js meta.var.expr.js meta.arrow.js storage.type.function.arrow.js
               =>  source.js meta.function.js meta.block.js meta.var.expr.js meta.arrow.js
-  a           =>  source.js meta.function.js meta.block.js meta.var.expr.js meta.arrow.js variable.other.readwrite.js
+  a           =>  source.js meta.function.js meta.block.js meta.var.expr.js variable.other.readwrite.js
               =>  source.js meta.function.js meta.block.js meta.var.expr.js
   +           =>  source.js meta.function.js meta.block.js meta.var.expr.js keyword.operator.arithmetic.js
               =>  source.js meta.function.js meta.block.js meta.var.expr.js

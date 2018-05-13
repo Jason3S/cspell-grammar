@@ -66,10 +66,10 @@ export function endCaptures(pattern: Pattern): Capture | undefined {
 
 export function patternToString(pattern: PatternMatch | PatternBeginEnd | PatternInclude | PatternPatterns | PatternName): string {
     if (isPatternMatch(pattern)) {
-        return `PatternMatch: ${pattern.name || '?'} (${pattern.match.toString()})`;
+        return `PatternMatch: ${pattern.name || '?'} (${pattern.match.toString().slice(0, 120)})`;
     }
     if (isPatternBeginEnd(pattern)) {
-        return `PatternBeginEnd: ${pattern.name || '?'} (${pattern.begin.toString()})`;
+        return `PatternBeginEnd: ${pattern.name || '?'} (${pattern.begin.toString().slice(0, 120)})`;
     }
     if (isPatternPatterns(pattern)) {
         return `PatternPatterns: ${pattern.name || '?'} [${pattern.patterns.length}]`;

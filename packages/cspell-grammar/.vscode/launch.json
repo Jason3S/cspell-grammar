@@ -10,7 +10,6 @@
 			"name": "Run Mocha Current File",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "runtimeArgs": [
-                "--harmony_regexp_lookbehind"
             ],
 			"args": [
 				"--timeout","999999",
@@ -26,8 +25,7 @@
 			"name": "Profile Mocha Current File",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "runtimeArgs": [
-                "--prof",
-                "--harmony_regexp_lookbehind"
+                "--prof"
             ],
 			"args": [
 				"--timeout","999999",

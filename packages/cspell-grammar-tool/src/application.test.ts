@@ -26,6 +26,20 @@ describe('Validate Application', () => {
         return scopeCache.get(scope)(text);
     }
 
+    it('Tests analyze a file', async () => {
+        const output: string[] = [];
+        const filePath = require.resolve('./application');
+        await analyse(filePath, line => output.push(line + '\n'));
+        expect(output.length).to.be.greaterThan(0);
+    });
+
+    it('Tests colorizing a file', async () => {
+        const output: string[] = [];
+        const filePath = require.resolve('./application');
+        await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
+        expect(output.length).to.be.greaterThan(0);
+    });
+
     tests.forEach((file) =>
         it('Tests colorizing a file', async () => {
             const output: string[] = [];
@@ -36,14 +50,6 @@ describe('Validate Application', () => {
             expect(result.actual).to.be.equal(result.expected);
         })
     );
-
-    it('Tests colorizing a file', async () => {
-        const output: string[] = [];
-        const filePath = require.resolve('./application');
-        await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
-        expect(output.length).to.be.greaterThan(0);
-    });
-
 
     tests.forEach(file =>
         it('tests analyzing a file', async () => {

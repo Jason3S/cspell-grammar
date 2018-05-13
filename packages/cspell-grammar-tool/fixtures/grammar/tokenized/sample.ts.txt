@@ -201,190 +201,128 @@ sample.ts
                             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts
   boolean                   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts support.type.primitive.ts
                             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts
-  {                         =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-                                punctuation.definition.block.ts
+  {                         =>  source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts
 
 17     const values = new Set<T>();
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-  const    =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts entity.name.type.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-  values   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               meta.definition.property.ts variable.object.property.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-  =        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               keyword.operator.assignment.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-  new      =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts keyword.operator.new.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts
-  Set      =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts entity.name.type.ts
-  <        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts meta.type.parameters.ts punctuation.definition.typeparameters.begin.ts
-  T        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts meta.type.parameters.ts entity.name.type.ts
-  >        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts meta.type.parameters.ts punctuation.definition.typeparameters.end.ts
-  (        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts meta.brace.round.ts
-  )        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-               new.expr.ts meta.brace.round.ts
-  ;        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-               punctuation.terminator.statement.ts
+           =>  source.ts meta.function.ts meta.block.ts
+  const    =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts storage.type.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts
+  values   =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.definition.variable.ts
+               variable.other.readwrite.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
+  =        =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts keyword.operator.assignment.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts
+  new      =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts keyword.operator.new.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts
+  Set      =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts entity.name.type.ts
+  <        =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts meta.type.parameters.ts
+               punctuation.definition.typeparameters.begin.ts
+  T        =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts meta.type.parameters.ts entity.name.type.ts
+  >        =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts meta.type.parameters.ts
+               punctuation.definition.typeparameters.end.ts
+  (        =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts meta.brace.round.ts
+  )        =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts new.expr.ts meta.brace.round.ts
+  ;        =>  source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts
 
 18     const extractor = extractFn || (a => a);
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-  const       =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts entity.name.type.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-  extractor   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.definition.property.ts variable.object.property.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-  =           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  keyword.operator.assignment.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-  extractFn   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
+              =>  source.ts meta.function.ts meta.block.ts
+  const       =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts storage.type.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts
+  extractor   =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.definition.variable.ts
                   variable.other.readwrite.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-  ||          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  keyword.operator.logical.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-  (           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.brace.round.ts
-  a           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.arrow.ts variable.parameter.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.arrow.ts
-  =>          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.arrow.ts storage.type.function.arrow.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.arrow.ts
-  a           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.arrow.ts variable.other.readwrite.ts
-  )           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.field.declaration.ts
-                  meta.brace.round.ts
-  ;           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-                  punctuation.terminator.statement.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
+  =           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts keyword.operator.assignment.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts
+  extractFn   =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts variable.other.readwrite.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts
+  ||          =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts keyword.operator.logical.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts
+  (           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts
+  a           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.arrow.ts variable.parameter.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.arrow.ts
+  =>          =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.arrow.ts storage.type.function.arrow.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.arrow.ts
+  a           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts variable.other.readwrite.ts
+  )           =>  source.ts meta.function.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts
+  ;           =>  source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts
 
 19     return (v: T) => {
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-  return   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.definition.method.ts entity.name.function.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-  (        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.parameters.ts punctuation.definition.parameters.begin.ts
-  v        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.parameters.ts variable.parameter.ts
-  :        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.parameters.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.parameters.ts meta.type.annotation.ts
-  T        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.parameters.ts meta.type.annotation.ts entity.name.type.ts
-  )        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.parameters.ts punctuation.definition.parameters.end.ts
-   =>      =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-  {        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-               meta.block.ts punctuation.definition.block.ts
+           =>  source.ts meta.function.ts meta.block.ts
+  return   =>  source.ts meta.function.ts meta.block.ts keyword.control.flow.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts
+  (        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.parameters.ts punctuation.definition.parameters.begin.ts
+  v        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.parameters.ts variable.parameter.ts
+  :        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.parameters.ts meta.type.annotation.ts
+               keyword.operator.type.annotation.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.parameters.ts meta.type.annotation.ts
+  T        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.parameters.ts meta.type.annotation.ts entity.name.type.ts
+  )        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.parameters.ts punctuation.definition.parameters.end.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts
+  =>       =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts storage.type.function.arrow.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts
+  {        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts punctuation.definition.block.ts
 
 20         const vv = extractor(v);
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts
-  const       =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts storage.type.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts
-  vv          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.definition.variable.ts variable.other.readwrite.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
-  =           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts keyword.operator.assignment.ts
-              =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts
-  extractor   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts meta.function-call.ts entity.name.function.ts
-  (           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts meta.brace.round.ts
-  v           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts variable.other.readwrite.ts
-  )           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts meta.var.expr.ts meta.brace.round.ts
-  ;           =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                  meta.block.ts punctuation.terminator.statement.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts
+  const       =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts storage.type.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts
+  vv          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
+                  meta.definition.variable.ts variable.other.readwrite.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
+  =           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts keyword.operator.assignment.ts
+              =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts
+  extractor   =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.function-call.ts
+                  entity.name.function.ts
+  (           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts
+  v           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts variable.other.readwrite.ts
+  )           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts
+  ;           =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts punctuation.terminator.statement.ts
 
 21         const ret = !values.has(vv);
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts
-  const      =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts storage.type.ts
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts
-  ret        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.definition.variable.ts variable.other.readwrite.ts
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
-  =          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts keyword.operator.assignment.ts
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts
-  !          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts keyword.operator.logical.ts
-  values     =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.function-call.ts variable.other.object.ts
-  .          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.function-call.ts punctuation.accessor.ts
-  has        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.function-call.ts support.function.dom.ts
-  (          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.brace.round.ts
-  vv         =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts variable.other.readwrite.ts
-  )          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.var.expr.ts meta.brace.round.ts
-  ;          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts punctuation.terminator.statement.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts
+  const      =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts storage.type.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts
+  ret        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
+                 meta.definition.variable.ts variable.other.readwrite.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.var-single-variable.expr.ts
+  =          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts keyword.operator.assignment.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts
+  !          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts keyword.operator.logical.ts
+  values     =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.function-call.ts
+                 variable.other.object.ts
+  .          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.function-call.ts
+                 punctuation.accessor.ts
+  has        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.function-call.ts
+                 support.function.dom.ts
+  (          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts
+  vv         =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts variable.other.readwrite.ts
+  )          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.var.expr.ts meta.brace.round.ts
+  ;          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts punctuation.terminator.statement.ts
 
 22         values.add(vv);
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts
-  values     =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.function-call.ts variable.other.object.ts
-  .          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.function-call.ts punctuation.accessor.ts
-  add        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.function-call.ts support.function.dom.ts
-  (          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.brace.round.ts
-  vv         =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts variable.other.readwrite.ts
-  )          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts meta.brace.round.ts
-  ;          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts punctuation.terminator.statement.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts
+  values     =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.function-call.ts variable.other.object.ts
+  .          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.function-call.ts punctuation.accessor.ts
+  add        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.function-call.ts support.function.dom.ts
+  (          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.brace.round.ts
+  vv         =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts variable.other.readwrite.ts
+  )          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts meta.brace.round.ts
+  ;          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts punctuation.terminator.statement.ts
 
 23         return ret;
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts
-  return     =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts keyword.control.flow.ts
-             =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts
-  ret        =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts variable.other.readwrite.ts
-  ;          =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-                 meta.block.ts punctuation.terminator.statement.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts
+  return     =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts keyword.control.flow.ts
+             =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts
+  ret        =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts variable.other.readwrite.ts
+  ;          =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts punctuation.terminator.statement.ts
 
 24     };
-         =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-             meta.block.ts
-  }      =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts meta.method.declaration.ts
-             meta.block.ts punctuation.definition.block.ts
-  ;      =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts
-             punctuation.terminator.statement.ts
+         =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts
+  }      =>  source.ts meta.function.ts meta.block.ts meta.arrow.ts meta.block.ts punctuation.definition.block.ts
+  ;      =>  source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts
 
 25 }
-  }   =>  source.ts meta.function.ts meta.return.type.ts meta.type.function.return.ts meta.object.type.ts punctuation.definition.block.ts
+  }   =>  source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts
 
 26 
 
@@ -411,34 +349,27 @@ sample.ts
   [          =>  source.ts meta.function.ts meta.return.type.ts meta.type.tuple.ts meta.brace.square.ts
   ]          =>  source.ts meta.function.ts meta.return.type.ts meta.type.tuple.ts meta.brace.square.ts
              =>  source.ts meta.function.ts meta.return.type.ts
-  {          =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts punctuation.definition.block.ts
+  {          =>  source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts
 
 28     return [...(new Set(src))];
-           =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts
-  return   =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts entity.name.type.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts
-  [        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.brace.square.ts
-  ...      =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts
-  (        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               meta.brace.round.ts
-  new      =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               entity.name.type.ts
-           =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-  Set      =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               entity.name.type.ts
-  (        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               meta.type.paren.cover.ts meta.brace.round.ts
-  src      =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               meta.type.paren.cover.ts entity.name.type.ts
-  )        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               meta.type.paren.cover.ts meta.brace.round.ts
-  )        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.type.paren.cover.ts
-               meta.brace.round.ts
-  ]        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts meta.type.tuple.ts meta.brace.square.ts
-  ;        =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts punctuation.terminator.statement.ts
+           =>  source.ts meta.function.ts meta.block.ts
+  return   =>  source.ts meta.function.ts meta.block.ts keyword.control.flow.ts
+           =>  source.ts meta.function.ts meta.block.ts
+  [        =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts meta.brace.square.ts
+  ...      =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts keyword.operator.spread.ts
+  (        =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts meta.brace.round.ts
+  new      =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts new.expr.ts keyword.operator.new.ts
+           =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts new.expr.ts
+  Set      =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts new.expr.ts entity.name.type.ts
+  (        =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts new.expr.ts meta.brace.round.ts
+  src      =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts new.expr.ts variable.other.readwrite.ts
+  )        =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts new.expr.ts meta.brace.round.ts
+  )        =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts meta.brace.round.ts
+  ]        =>  source.ts meta.function.ts meta.block.ts meta.array.literal.ts meta.brace.square.ts
+  ;        =>  source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts
 
 29 }
-  }   =>  source.ts meta.function.ts meta.return.type.ts meta.object.type.ts punctuation.definition.block.ts
+  }   =>  source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts
 
 30 
 
