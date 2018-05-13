@@ -15,10 +15,9 @@
 		"lerna-install": "lerna bootstrap",
 		"lerna-build": "lerna run build",
 		"lerna-test": "lerna run test",
-		"coverage": "npm run generate-code-coverage && npm run collect-coverage-report",
+		"coverage": "rimraf .nyc_output && npm run generate-code-coverage && nyc report",
 		"generate-code-coverage": "lerna run generate-code-coverage",
-		"collect-coverage-report": "rimraf ./coverage && mkdir coverage && lerna run coverage-report",
-		"coverage-coveralls": "npm run coverage && cat coverage/* | coveralls"
+		"coverage-coveralls": "nyc report --reporter=text-lcov | coveralls"
 	},
 	"author": "Jason Dent",
 	"license": "MIT",
@@ -26,5 +25,25 @@
 	"bugs": {
 		"url": "https://github.com/Jason3S/cspell-grammar/issues"
 	},
-	"homepage": "https://github.com/Jason3S/cspell-grammar#readme"
+	"homepage": "https://github.com/Jason3S/cspell-grammar#readme",
+	"nyc": {
+		"include": [
+			"src/**/*.ts"
+		],
+		"exclude": [
+			"src/**/*.test.ts"
+		],
+		"extension": [
+			".ts"
+		],
+		"require": [
+			"ts-node/register"
+		],
+		"temp-directory": ".nyc_output",
+		"report-dir": "coverage",
+		"reporter": [
+			"json",
+			"html"
+		]
+	}
 }

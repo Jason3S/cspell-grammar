@@ -29,7 +29,6 @@
     "test-watch": "npm run build && mocha --exit --require ts-node/register --watch --recursive \"src/**/*.test.ts\"",
     "prepare": "npm run clean-build",
     "prepublish-check": "npm run lint",
-    "coverage-report": "nyc report --reporter=text-lcov > ../../coverage/$npm_package_name.lcov",
     "test-unit": "mocha --recursive \"dist/**/*.test.js\"",
     "test": "npm run test-unit"
   },
@@ -89,6 +88,9 @@
     "require": [
       "ts-node/register"
     ],
+    "clean": false,
+    "temp-directory": "../../.nyc_output",
+    "report-dir": "../../coverage",
     "reporter": [
       "json",
       "html"
