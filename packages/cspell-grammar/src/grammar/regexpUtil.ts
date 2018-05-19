@@ -47,21 +47,35 @@ function init() {
         /\(\?>/,
         () => '(?:'
     );
+    // Handle extra greedy spaces
+    XRegExp.addToken(
+        /\\s\*\+/,
+        () => '\\s*'
+    );
+    // Handle \G
+    XRegExp.addToken(
+        /\\[G]/,
+        () => '\\b'
+    );
+    // Substitute back reference with named references
+    XRegExp.addToken(
+        /\\(\d)(?!\d)/,
+        (m) => `{{index_${m[1]}}}`
+    );
 }
 
-export interface SubPatternMatch extends Array<string> {
-    input?: string;
-    [index: number]: string;
+export interface SubPatternMatch {
+    [index: string]: string | undefined;
 }
 
 export function escapeMatch(match: RegExpExecArray | null): SubPatternMatch {
-    const result: SubPatternMatch = [];
+    const result: SubPatternMatch = {};
     if (!match) {
         return result;
     }
     for (const [key, value] of Object.entries(match)) {
-        // Nasty cast because the definition of XRegExp.build is wrong.
-        result[key as keyof SubPatternMatch] = value ? XRegExp.escape(value) : undefined;
+        const name = key.replace(/^\d$/, 'index_$&');
+        result[name] = value ? XRegExp.escape(value) : undefined;
     }
     return result;
 }

@@ -14,6 +14,7 @@ const fixtures = Fixtures.create();
 describe('Validate against vscode-textmate', function() {
 
     const tests = [
+        // ['sample.go', 'source.go'],
         ['sample.js', 'source.js'],
         ['sample.ts', 'source.ts'],
         // ['sample.py', 'source.python'],
@@ -36,10 +37,12 @@ describe('Validate against vscode-textmate', function() {
                     return;
                 }
 
-                // const aScopes = a.tokens.map(t => `${t.startIndex}-${t.endIndex} ${t.scopes.join(' ')}`);
-                // const bScopes = b.tokens.map(t => `${t.startIndex}-${t.endIndex} ${t.scopes.join(' ')}`);
-                const aScopes = a.tokens.map(t => t.scopes.join(' '));
-                const bScopes = b.tokens.map(t => t.scopes.join(' '));
+                const mx = a.line.length;
+
+                const aScopes = a.tokens.map(t => `${t.startIndex}-${t.endIndex} ${t.scopes.join(' ')}`);
+                const bScopes = b.tokens.map(t => `${t.startIndex}-${Math.min(t.endIndex, mx)} ${t.scopes.join(' ')}`);
+                // const aScopes = a.tokens.map(t => t.scopes.join(' '));
+                // const bScopes = b.tokens.map(t => t.scopes.join(' '));
                 expect(aScopes, `${a.lineNumber} [${a.line}]`).to.be.deep.equal(bScopes);
             });
         });

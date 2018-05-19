@@ -5,7 +5,7 @@ import { escapeMatch, MatchOffsetResult, matchesToOffsets } from './regexpUtil';
 import { create } from '../util/cacheMap';
 
 const maxDepth = 100;
-const useLogging = false;
+const useLogging = true;
 
 function logInfo(message: string) {
     useLogging && console.log(message);
@@ -51,7 +51,7 @@ export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
     const tokens: Token[] = [];
     let offset = 0;
     let end = rule.end;
-    let endMatch = end ? XRegExp.exec(text, end, offset) : undefined;
+    let endMatch = end ? exec(text, end, offset) : undefined;
     let endOffset = endMatch ? endMatch.index : text.length;
     while (offset < text.length) {
         logInfo(`Ends at ${endOffset}/${text.length} [${endMatch ? endMatch[0] : '-'}] ${extractScopes(rule).join(' ')}`);
@@ -64,21 +64,22 @@ export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
             tokens.push(...tokenizeCapture(matchingRule, match, captures(matchingRule.pattern)));
             logInfo(`Last Scope: ${tokens.length ? tokens[tokens.length - 1].scopes.join(' ') : ''}`);
             offset = match.index + match[0].length;
-            const testEndFromOffset = offset + (match[0].length ? 0 : 1);
+            const testEndFromOffset = Math.min(offset + (match[0].length ? 0 : 1), text.length);
             const pattern = matchingRule.pattern;
             if (isPatternBeginEnd(pattern)) {
+                const endPattern = buildEndRegEx(pattern.end, match);
                 rule = {
                     parent: matchingRule,
                     pattern: { patterns: pattern.patterns || [] },
                     grammarDef: matchingRule.grammarDef,
                     depth: matchingRule.depth + 1,
                     scope: pattern.contentName,
-                    end: buildEndRegEx(pattern.end, match),
+                    end: endPattern.regex,
                     comment: `Begin ${rule.depth + 1}: ${pattern.begin} <--> ${pattern.end} # ` + (pattern.name || pattern.comment || ''),
                 };
-                end = rule.end;
+                end = endPattern.regex;
                 try {
-                    endMatch = end ? XRegExp.exec(text, end, testEndFromOffset) : undefined;
+                    endMatch = end ? exec(text, end, testEndFromOffset + endPattern.offset) : undefined;
                     endOffset = endMatch ? endMatch.index : text.length;
                 } catch (e) {
                     console.log(e);
@@ -100,7 +101,7 @@ export function tokenizeLine(text: string, rule: Rule): TokenizeLineResult {
             rule = findEndRule(rule);
             end = rule.end;
             try {
-                endMatch = end ? XRegExp.exec(text, end, offset) : undefined;
+                endMatch = end ? exec(text, end, offset) : undefined;
                 endOffset = endMatch ? endMatch.index : text.length;
             } catch (e) {
                 console.log(e);
@@ -166,7 +167,7 @@ function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
     if ( isPatternMatch(pattern) ) {
         const { regex, sticky } = regExpOrStringToRegExp(pattern.match);
         try {
-            return { match: XRegExp.exec(text, regex, offset, sticky), rule };
+            return { match: exec(text, regex, offset, sticky), rule };
         } catch (e) {
             console.log(e);
             return { rule };
@@ -175,14 +176,14 @@ function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
     if ( isPatternBeginEnd(pattern) ) {
         try {
             const { regex, sticky } = regExpOrStringToRegExp(pattern.begin);
-            return { match: XRegExp.exec(text, regex, offset, sticky), rule };
+            return { match: exec(text, regex, offset, sticky), rule };
         } catch (e) {
             console.log(e);
             return { rule };
         }
     }
     if ( isPatternName(pattern) ) {
-        return { match: XRegExp.exec(text, /.*/, offset, false), rule };
+        return { match: exec(text, /.*/, offset, false), rule };
     }
 
     let best: MatchResult | undefined;
@@ -216,6 +217,18 @@ function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
     return best;
 }
 
+const rBeginningOfLine = /^/;
+
+function exec(str: string, regex: RegExp, pos?: number, sticky?: boolean): RegExpExecArray {
+    const r = XRegExp.exec(str, regex, pos, sticky);
+    if (!r && regex.source === '(?=^)') {
+        const alt = rBeginningOfLine.exec(str)!;
+        alt.index = str.length;
+        return alt;
+    }
+    return r;
+}
+
 function findBoundingRule(rule: Rule): Rule {
     while (rule.parent && !isPatternBeginEnd(rule.pattern)) {
         rule = rule.parent!;
@@ -232,6 +245,7 @@ function findEndRule(rule: Rule): Rule {
 
 const matchSlashG = /^\\G/;
 const matchNegSlashG = '(?!\\G)';
+const noMatch = /(?!)/;
 
 const regExCache = create(_regExpOrStringToRegExp);
 
@@ -250,26 +264,33 @@ function _regExpOrStringToRegExp(regex: RegexOrString): { regex: RegExp, sticky?
         return { regex: XRegExp(regex) };
     } catch (e) {
         console.log(e);
-        return { regex: /.^/ };
+        return { regex: noMatch};
     }
 }
-function buildEndRegEx(regex: RegexOrString, match: RegExpExecArray): RegExp | undefined {
+
+interface EndRegEx {
+    regex?: RegExp;
+    offset: number;
+}
+
+function buildEndRegEx(regex: RegexOrString, match: RegExpExecArray): EndRegEx {
+    const offset = 0;
     if (!match) {
-        return undefined;
+        return { offset };
     }
     if (typeof regex === 'string') {
         const subs = escapeMatch(match);
         try {
             if (regex.startsWith(matchNegSlashG)) {
-                regex = '(?<=.|^)|$';
+                return { regex: XRegExp('(?=.)|$'), offset: 1 };
             }
-            return XRegExp.build(regex, subs);
+            regex = XRegExp.build(regex, subs as any);
         } catch (e) {
             console.log(e);
-            return /.^/;
+            regex = noMatch;
         }
     }
-    return regex;
+    return { regex, offset };
 }
 
 function extractScopes(rule: Rule): string[] {
