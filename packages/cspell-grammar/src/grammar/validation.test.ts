@@ -14,11 +14,10 @@ const fixtures = Fixtures.create();
 describe('Validate against vscode-textmate', function() {
 
     const tests = [
-        // ['sample.go', 'source.go'],
         ['sample.js', 'source.js'],
         ['sample.ts', 'source.ts'],
+        ['sample.go', 'source.go'],
         // ['sample.py', 'source.python'],
-        // ['sample.go', 'source.go'],
         // ['sample.tex', 'text.tex.latex'],
     ];
 

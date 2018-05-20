@@ -5,7 +5,7 @@ import { escapeMatch, MatchOffsetResult, matchesToOffsets } from './regexpUtil';
 import { create } from '../util/cacheMap';
 
 const maxDepth = 100;
-const useLogging = true;
+const useLogging = false;
 
 function logInfo(message: string) {
     useLogging && console.log(message);

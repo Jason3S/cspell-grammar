@@ -1,4 +1,4 @@
-import { GrammarDefinition, Pattern, PatternInclude } from './grammarDefinition';
+import { GrammarDefinition, Pattern, PatternInclude, PatternPatterns } from './grammarDefinition';
 import { Token, tokenizeLine, grammarToRule } from './tokenize';
 import * as fs from 'fs-extra';
 import { isPatternInclude, isPatternPatterns } from './pattern';
@@ -24,7 +24,8 @@ export type ScopeResolver = (scopeNameRef: string) => Pattern | undefined;
 export class Grammar {
     constructor(private grammarDef: GrammarDefinition) {
         // fixup the repository to include $self and $base and ensure it exists.
-        const base = { $self: grammarDef, $base: grammarDef };
+        const $self: PatternPatterns = { patterns: grammarDef.patterns };
+        const base = { $self, $base: $self };
         const repository = grammarDef.repository || base;
         Object.assign(repository, base);
         grammarDef.repository = repository;
