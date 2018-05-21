@@ -3,8 +3,8 @@ node_js:
   - "node"
   - "8"
 install:
-  - npm ci
-  - npm run lerna-install-ci
+  - npm install
+  - npm run lerna-install
   - npm run build
 
 script:
