@@ -546,7 +546,7 @@
 			]
 		},
 		"number": {
-			"name": "constant.numeric.python",
+			"comment": "constant.numeric.python",
 			"patterns": [
 				{
 					"include": "#number-float"

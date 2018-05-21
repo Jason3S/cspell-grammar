@@ -17,7 +17,7 @@ describe('Validate against vscode-textmate', function() {
         ['sample.js', 'source.js'],
         ['sample.ts', 'source.ts'],
         ['sample.go', 'source.go'],
-        // ['sample.py', 'source.python'],
+        ['sample.py', 'source.python'],
         // ['sample.tex', 'text.tex.latex'],
     ];
 
