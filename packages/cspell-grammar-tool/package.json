@@ -27,7 +27,7 @@
     "test-ts": "NODE_ENV=test mocha --exit --require ts-node/register --recursive --bail \"src/**/*.test.ts\"",
     "test-ts-file": "NODE_ENV=test mocha --exit --require ts-node/register",
     "test-watch": "npm run build && mocha --exit --require ts-node/register --watch --recursive \"src/**/*.test.ts\"",
-    "prepare": "npm run clean-build",
+    "prepublishOnly": "npm run clean-build",
     "prepublish-check": "npm run lint",
     "test-unit": "mocha --recursive \"dist/**/*.test.js\"",
     "test": "npm run test-unit"

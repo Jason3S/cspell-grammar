@@ -13,6 +13,7 @@
 		"bootstrap": "lerna bootstrap",
 		"lint-travis": "lerna run lint-travis",
 		"lerna-install": "lerna bootstrap",
+		"lerna-install-ci": "lerna bootstrap --ci",
 		"lerna-build": "lerna run build",
 		"lerna-test": "lerna run test",
 		"coverage": "rimraf .nyc_output && npm run generate-code-coverage",
