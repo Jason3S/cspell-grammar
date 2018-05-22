@@ -1,7 +1,7 @@
 import { GrammarDefinition, Pattern, PatternInclude, PatternPatterns } from './grammarDefinition';
 import { Token, tokenizeLine, grammarToRule } from './tokenize';
-import * as fs from 'fs-extra';
 import { isPatternInclude, isPatternPatterns } from './pattern';
+import { loadGrammar } from './grammarFiles';
 
 export { Token, tokenizeLine } from './tokenize';
 
@@ -113,8 +113,7 @@ export class Grammar {
     }
 
     static async createFromFile(filename: string): Promise<Grammar> {
-        const json = await fs.readFile(filename, 'utf8');
-        const grammarDef = JSON.parse(json) as GrammarDefinition;
+        const grammarDef = await loadGrammar(filename);
         return new Grammar(grammarDef);
     }
 }

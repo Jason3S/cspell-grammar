@@ -30,15 +30,18 @@ describe('Validate tokenizeFile', async function () {
         return grammarCache.get(name);
     }
 
-    const tests = [
-        ['sample.js', 'javascript.tmLanguage.json'],
-        ['sample.ts', 'TypeScript.tmLanguage.json'],
+    const tests: [string, string, string | undefined][] = [
+        ['sample.json', 'jsonSample.yaml', 'sample.json.capture.json'],
+        ['sample.json', 'JSON.tmLanguage.json', undefined],
+        ['sample.js', 'javascript.tmLanguage.json', undefined],
+        ['sample.ts', 'TypeScript.tmLanguage.json', undefined],
+        ['sample.json', 'jsonSample.yaml', undefined],
     ];
 
-    function testFile(sampleFile: string, grammarName: string) {
+    function testFile(sampleFile: string, grammarName: string, fixtureName?: string) {
         it(`test tokenizeFile ${sampleFile}`, async () => {
             const grammar = await fetchGrammar(grammarName)!;
-            const fixtureName = sampleFile + '.json';
+            fixtureName = fixtureName || (sampleFile + '.json');
             const tokenizedResult = await tokenizeFile(grammar, pathToSource(sampleFile));
             tokenizedResult.filename = path.basename(tokenizedResult.filename);
             const json = JSON.stringify(tokenizedResult, null, 2);
@@ -47,8 +50,8 @@ describe('Validate tokenizeFile', async function () {
         });
     }
 
-    for (const [sampleFile, grammarName] of tests) {
-        testFile(sampleFile, grammarName);
+    for (const [sampleFile, grammarName, fixtureName] of tests) {
+        testFile(sampleFile, grammarName, fixtureName);
     }
 });
 

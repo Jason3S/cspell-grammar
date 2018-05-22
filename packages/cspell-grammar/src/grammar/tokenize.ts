@@ -1,5 +1,5 @@
 import { GrammarDefinition, Pattern, RegexOrString, Capture, PatternName } from './grammarDefinition';
-import { isPatternInclude, isPatternMatch, isPatternBeginEnd, scope, captures, endCaptures, isPatternName } from './pattern';
+import { isPatternInclude, isPatternMatch, isPatternBeginEnd, scope, captures, endCaptures, isPatternName, isPatternPatterns } from './pattern';
 import * as XRegExp from 'xregexp';
 import { escapeMatch, MatchOffsetResult, matchesToOffsets } from './regexpUtil';
 import { create } from '../util/cacheMap';
@@ -170,7 +170,9 @@ function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
     if ( isPatternMatch(pattern) ) {
         const { regex, sticky } = regExpOrStringToRegExp(pattern.match);
         try {
-            return { match: exec(text, regex, offset, sticky), rule };
+            const match = exec(text, regex, offset, sticky);
+            const scope = extractScopeFromRule(match, rule);
+            return { match, rule: { ...rule, scope } };
         } catch (e) {
             console.log(e);
             return { rule };
@@ -179,7 +181,9 @@ function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
     if ( isPatternBeginEnd(pattern) ) {
         try {
             const { regex, sticky } = regExpOrStringToRegExp(pattern.begin);
-            return { match: exec(text, regex, offset, sticky), rule };
+            const match = exec(text, regex, offset, sticky);
+            const scope = extractScopeFromRule(match, rule);
+            return { match, rule: { ...rule, scope } };
         } catch (e) {
             console.log(e);
             return { rule };
@@ -189,35 +193,42 @@ function matchRuleInner(text: string, offset: number, rule: Rule): MatchResult {
         return { match: exec(text, /.*/, offset, false), rule };
     }
 
-    let best: MatchResult | undefined;
-    for (const pat of pattern.patterns) {
-        const m = matchRule(text, offset, {
-            grammarDef,
-            pattern: pat,
-            parent: rule,
-            depth: depth + 1,
-            scope: scope(pat),
-            comment: `Nested ${rule.comment}: ` + (pat.name || pat.comment || '*'),
-        });
-        if (!best) {
-            best = m;
-        }
-        if (m.match) {
-            if (m.match.index === offset) {
-                return m;
-            }
-            if (!best.match || m.match.index < best.match.index) {
+    if ( isPatternPatterns(pattern) ) {
+        let best: MatchResult | undefined;
+        for (const pat of pattern.patterns) {
+            const m = matchRule(text, offset, {
+                grammarDef,
+                pattern: pat,
+                parent: rule,
+                depth: depth + 1,
+                scope: scope(pat),
+                comment: `Nested ${rule.comment}: ` + (pat.name || pat.comment || '*'),
+            });
+            if (!best) {
                 best = m;
             }
+            if (m.match) {
+                if (m.match.index === offset) {
+                    return m;
+                }
+                if (!best.match || m.match.index < best.match.index) {
+                    best = m;
+                }
+            }
         }
+        if (!best) {
+            best = {
+                match: undefined,
+                rule
+            };
+        }
+        return best;
     }
-    if (!best) {
-        best = {
-            match: undefined,
-            rule
-        };
-    }
-    return best;
+
+    return {
+        match: undefined,
+        rule
+    };
 }
 
 const rBeginningOfLine = /^/;
@@ -313,8 +324,25 @@ function extractScopes(rule: Rule): string[] {
     return values.reverse();
 }
 
+function extractScopeFromRule(match: RegExpExecArray, rule: Rule): string | undefined {
+    const scope = match && rule.pattern && rule.pattern.name;
+    if (scope) {
+        return substituteScopeMatches(match, scope);
+    }
+    return undefined;
+}
+
+function substituteScopeMatches(match: RegExpExecArray, scope: string): string {
+    return scope.replace(/\$\d/g, (s) => match[Number.parseInt(s.slice(1))]);
+}
+
 function tokenizeCapture(rule: Rule, match: RegExpExecArray, cap: Capture | undefined): Token[] {
-    const scopes = extractScopes(rule);
+    function substituteMatches(scope: string): string {
+        return substituteScopeMatches(match, scope);
+    }
+
+    const scopes = extractScopes(rule)
+        .map(substituteMatches);
     let startIndex = match.index;
     const endIndex = startIndex + match[0].length;
 
@@ -329,7 +357,8 @@ function tokenizeCapture(rule: Rule, match: RegExpExecArray, cap: Capture | unde
             const capturedScopes = patterns
                 .filter(isPatternName)
                 .map(p => p.name.split(' '))
-                .reduce((a, b) => a.concat(b), scopes);
+                .reduce((a, b) => a.concat(b), scopes)
+                .map(substituteMatches);
             if (!capturedScopes.length) { return []; }
             const pattern = patterns[patterns.length - 1];
             if (isPatternName(pattern)) {
