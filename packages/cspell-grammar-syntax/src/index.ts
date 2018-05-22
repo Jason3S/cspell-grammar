@@ -18,6 +18,7 @@ const files = [
     "syntax/vscode/python/MagicRegExp.tmLanguage.json",
     "syntax/vscode/r.tmLanguage.json",
     "syntax/vscode/TypeScript.tmLanguage.json",
+    "syntax/vscode/JSON.tmLanguage.json",
 ];
 
 export function getFilenames(): string[] {
