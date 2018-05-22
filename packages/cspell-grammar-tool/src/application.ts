@@ -39,12 +39,22 @@ export async function colorizeFile(
     });
 }
 
-export async function analyse(
+export interface AnalyzeOptions {
+    syntax?: string;
+}
+
+export async function analyze(
     pathToFile: string,
     emitter: Emitter,
+    options?: AnalyzeOptions,
 ): Promise<void> {
     const text = await fs.readFile(pathToFile, DEFAULT_ENCODING);
-    const registry = await loadRegistry();
+    const optionalSyntax: string[] = [];
+    if (options && options.syntax) {
+        optionalSyntax.push(options.syntax);
+    }
+
+    const registry = await loadRegistry(...optionalSyntax);
     const grammar = registry.getGrammarForFileType(path.extname(pathToFile));
     if (!grammar) {
         const msg = `Unable to find grammar that matches file: ${path.basename(pathToFile)}`;

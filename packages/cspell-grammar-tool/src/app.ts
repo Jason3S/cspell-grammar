@@ -2,7 +2,7 @@
 
 import * as path from 'path';
 import * as program from 'commander';
-import { colorizeFile, analyse } from './application';
+import { colorizeFile, analyze, AnalyzeOptions } from './application';
 const npmPackage = require(path.join(__dirname, '..', 'package.json'));
 
 let showHelp = true;
@@ -34,9 +34,14 @@ program
 program
     .command('analyze')
     .description('Analyze a file and output the scope selectors for each line.')
+    .option('-s,--syntax <syntax_file>')
     .arguments('<file>')
-    .action((file: string) => {
-        analyse(file, (line: string) => process.stdout.write(line + '\n')).then(
+    .action((file: string, options: AnalyzeOptions) => {
+        analyze(
+            file,
+            (line: string) => process.stdout.write(line + '\n'),
+            options
+        ).then(
             () => { process.exit(0); },
             (reason) => {
                 console.log(reason);

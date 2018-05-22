@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { colorizeFile, analyse } from './application';
+import { colorizeFile, analyze } from './application';
 import { create, defaultUpdateFixtures } from './fixtures';
 import * as cacheMap from './util/cacheMap';
 import { Scope, createColorizer } from 'cspell-grammar';
@@ -28,7 +28,7 @@ describe('Validate Application', () => {
     it('Tests analyze a file', async () => {
         const output: string[] = [];
         const filePath = require.resolve('./application');
-        await analyse(filePath, line => output.push(line + '\n'));
+        await analyze(filePath, line => output.push(line + '\n'));
         expect(output.length).to.be.greaterThan(0);
     });
 
@@ -55,7 +55,7 @@ describe('Validate Application', () => {
             const output: string[] = [];
             const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', file);
             const fixturePath = fixtureHelper.relativeFixturePath('application', 'analyze', file + '.txt');
-            await analyse(filePath, line => output.push(line + '\n'));
+            await analyze(filePath, line => output.push(line + '\n'));
             const result = await fixtureHelper.compare(fixturePath, output.join(''));
             expect(result.actual).to.be.equal(result.expected);
         })
@@ -73,7 +73,7 @@ describe('Validate Application', () => {
     it('tests failing to find a grammar for analyse', () => {
         const filename = 'sample.unknown_ext';
         const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', filename);
-        analyse(filePath, () => {}).then(
+        analyze(filePath, () => {}).then(
             () => expect(true, 'Should not get here').to.be.false,
             (msg) => expect(msg).to.be.equal(`Unable to find grammar that matches file: ${filename}`)
         );
