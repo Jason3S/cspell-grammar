@@ -1,0 +1,33 @@
+{
+    "name": "sample",
+    "records": [
+        {
+            "name": "apple",
+            "type": "fruit",
+            "colors": [
+                "red",
+                "green",
+                "yellow"
+            ]
+        },
+        {
+            "name": "banana",
+            "type": "fruit",
+            "colors": [
+                "yellow",
+                "red",
+                "green",
+                "brown"
+            ]
+        },
+        {
+            "name": "grape",
+            "type": "fruit",
+            "colors": [
+                "red",
+                "green",
+                "yellow"
+            ]
+        }
+    ]
+}

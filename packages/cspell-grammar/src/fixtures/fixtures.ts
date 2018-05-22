@@ -1,6 +1,8 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 
+export const defaultUpdateFixtures = false;
+
 export const defaultFixturesLocation = path.join(__dirname, '..', '..', 'fixtures');
 
 export interface FixtureHelper {
@@ -17,8 +19,6 @@ export interface CompareResult {
     expected: string;
     actual: string;
 }
-
-export const defaultUpdateFixtures = false;
 
 export function create(fixturesLocation: string = defaultFixturesLocation): FixtureHelper {
 
