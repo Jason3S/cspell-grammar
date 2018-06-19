@@ -26,6 +26,17 @@
             "sourceMaps": true,
             "preLaunchTask": "npm: build"
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run App Analyze yaml",
+            "program": "${workspaceRoot}/dist/app.js",
+			"args": ["analyze", "--color", "${workspaceRoot}/../cspell-grammar/fixtures/grammar/syntax/jsonSample.yaml"],
+            "cwd": "${workspaceRoot}",
+			"outFiles": [ "${workspaceRoot}/dist/**/*.js" ],
+            "sourceMaps": true,
+            "preLaunchTask": "npm: build"
+        },
 		{
 			"type": "node",
 			"request": "launch",

@@ -47,6 +47,10 @@ function init() {
         /\(\?>/,
         () => '(?:'
     );
+    XRegExp.addToken(
+        /\(\?x:/,
+        () => '(?:'
+    );
     // Handle extra greedy spaces
     XRegExp.addToken(
         /\\s\*\+/,

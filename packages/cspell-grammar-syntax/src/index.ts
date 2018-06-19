@@ -14,11 +14,12 @@ const files = [
     "syntax/vscode/javascript/JavaScript.tmLanguage.json",
     "syntax/vscode/javascript/JavaScriptReact.tmLanguage.json",
     "syntax/vscode/javascript/Regular Expressions (JavaScript).tmLanguage",
+    "syntax/vscode/JSON.tmLanguage.json",
     "syntax/vscode/python/MagicPython.tmLanguage.json",
     "syntax/vscode/python/MagicRegExp.tmLanguage.json",
     "syntax/vscode/r.tmLanguage.json",
     "syntax/vscode/TypeScript.tmLanguage.json",
-    "syntax/vscode/JSON.tmLanguage.json",
+    "syntax/vscode/yaml.tmLanguage.json",
 ];
 
 export function getFilenames(): string[] {
