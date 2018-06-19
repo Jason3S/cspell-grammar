@@ -45,7 +45,8 @@ describe('Validate tokenizeFile', async function () {
             const tokenizedResult = await tokenizeFile(grammar, pathToSource(sampleFile));
             tokenizedResult.filename = path.basename(tokenizedResult.filename);
             const json = JSON.stringify(tokenizedResult, null, 2);
-            const comp = await fixtureHelper.compare(toFixturePath(fixtureName), json);
+            const compFull = await fixtureHelper.compare(toFixturePath(fixtureName), json);
+            const comp = fixtureHelper.simplifyResult(compFull);
             expect(comp.actual).to.be.equal(comp.expected);
         });
     }
