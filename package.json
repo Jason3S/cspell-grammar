@@ -2,10 +2,10 @@
 	"name": "cspell-grammar-repo",
 	"description": "A tmLanguage based Grammar Parser for cSpell",
 	"devDependencies": {
-		"coveralls": "^3.0.1",
-		"lerna": "^2.11.0",
-		"nyc": "^11.7.3",
-		"rimraf": "^2.6.2"
+		"coveralls": "^3.0.2",
+		"lerna": "^3.11.0",
+		"nyc": "^11.9.0",
+		"rimraf": "^2.6.3"
 	},
 	"scripts": {
 		"test": "npm run lerna-test",
