@@ -32,14 +32,14 @@ describe('Validate tokenizeFile', async function () {
 
     const tests: [string, string, string | undefined][] = [
         ['sample.json', 'jsonSample.yaml', 'sample.json.capture.json'],
-        ['sample.json', 'JSON.tmLanguage.json', undefined],
+        // ['sample.json', 'JSON.tmLanguage.json', undefined],
         ['sample.js', 'javascript.tmLanguage.json', undefined],
         ['sample.ts', 'TypeScript.tmLanguage.json', undefined],
         ['sample.json', 'jsonSample.yaml', undefined],
     ];
 
     function testFile(sampleFile: string, grammarName: string, fixtureName?: string) {
-        it(`test tokenizeFile ${sampleFile}`, async () => {
+        it(`test tokenizeFile ${sampleFile} ${grammarName}`, async () => {
             const grammar = await fetchGrammar(grammarName)!;
             fixtureName = fixtureName || (sampleFile + '.json');
             const tokenizedResult = await tokenizeFile(grammar, pathToSource(sampleFile));

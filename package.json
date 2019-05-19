@@ -2,9 +2,9 @@
 	"name": "cspell-grammar-repo",
 	"description": "A tmLanguage based Grammar Parser for cSpell",
 	"devDependencies": {
-		"coveralls": "^3.0.2",
-		"lerna": "^3.11.0",
-		"nyc": "^11.9.0",
+		"coveralls": "^3.0.3",
+		"lerna": "^3.14.1",
+		"nyc": "^14.1.1",
 		"rimraf": "^2.6.3"
 	},
 	"scripts": {
