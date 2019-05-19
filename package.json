@@ -26,13 +26,12 @@
 		"build": "npm run lerna-build",
 		"bootstrap": "lerna bootstrap",
 		"lint-travis": "lerna run lint-travis",
-		"lerna-install": "lerna bootstrap",
-		"lerna-install-ci": "lerna bootstrap --ci",
+		"prepare": "lerna bootstrap && npm run build",
 		"lerna-build": "lerna run build",
 		"lerna-test": "lerna run test",
-		"coverage": "rimraf .nyc_output && npm run generate-code-coverage",
+		"coverage": "rimraf .nyc_output && npm run generate-code-coverage && nyc report --reporter=lcov --reporter=html",
 		"generate-code-coverage": "lerna run generate-code-coverage",
-		"coverage-coveralls": "npm run coverage && nyc report --reporter=text-lcov | coveralls"
+		"coverage-coveralls": "npm run generate-code-coverage && nyc report --reporter=text-lcov | coveralls"
 	},
 	"author": "Jason Dent",
 	"license": "MIT",
@@ -43,23 +42,22 @@
 	"homepage": "https://github.com/Jason3S/cspell-grammar#readme",
 	"nyc": {
 		"include": [
-			"src/**/*.ts"
+		  "**/src/**/*.ts"
 		],
 		"exclude": [
-			"src/**/*.test.ts"
+		  "**/src/**/*.test.ts",
+		  "**/src/**/*.spec.ts",
+		  "**/src/fixtures/**"
 		],
 		"extension": [
-			".ts"
+		  ".ts"
 		],
 		"require": [
-			"ts-node/register"
+		  "ts-node/register"
 		],
-		"clean": false,
-		"temp-directory": ".nyc_output",
-		"report-dir": "coverage",
 		"reporter": [
-			"json",
-			"html"
+		  "json",
+		  "html"
 		]
 	}
 }
