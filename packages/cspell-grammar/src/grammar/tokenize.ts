@@ -29,7 +29,7 @@ export interface Token {
     readonly scopes: string[];
 }
 
-export interface TokenizeIterator extends IterableIterator<string> {
+export interface TokenizeIterator extends Iterator<string, undefined, string> {
     next: (line: string) => IteratorResult<string>;
     [Symbol.iterator]: () => TokenizeIterator;
 }
