@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { GrammarDefinition } from './grammarDefinition';
 import * as path from 'path';
 import { Rule, tokenizeLine, pairCaptureGroupsToMatchOffsets, Token, mergeTokens } from './tokenize';
@@ -12,13 +11,13 @@ describe('Validate Tokenizer', () => {
     it('tests mergeTokens empty', () => {
         const tokens: Token[] = [];
         const result = mergeTokens(tokens);
-        expect(result).to.deep.equal(tokens);
+        expect(result).toEqual(tokens);
     });
 
     it('tests mergeTokens single', () => {
         const tokens: Token[] = [{startIndex: 0, endIndex: 20, scopes: ['one']}];
         const result = mergeTokens(tokens);
-        expect(result).to.deep.equal(tokens);
+        expect(result).toEqual(tokens);
     });
 
     it('tests mergeTokens no overlap', () => {
@@ -28,7 +27,7 @@ describe('Validate Tokenizer', () => {
             {startIndex: 30, endIndex: 40, scopes: ['three']},
         ];
         const result = mergeTokens(tokens);
-        expect(result).to.deep.equal(tokens);
+        expect(result).toEqual(tokens);
     });
 
     it('tests mergeTokens overlap', () => {
@@ -45,7 +44,7 @@ describe('Validate Tokenizer', () => {
             {startIndex: 35, endIndex: 40, scopes: ['three']},
         ];
         const result = mergeTokens(tokens);
-        expect(result).to.deep.equal(expected);
+        expect(result).toEqual(expected);
     });
 
     it('tests mergeTokens overlap', () => {
@@ -60,7 +59,7 @@ describe('Validate Tokenizer', () => {
             {startIndex: 35, endIndex: 40, scopes: ['three']},
         ];
         const result = mergeTokens(tokens);
-        expect(result).to.deep.equal(expected);
+        expect(result).toEqual(expected);
     });
 
     it('tests mergeTokens split', () => {
@@ -78,7 +77,7 @@ describe('Validate Tokenizer', () => {
             {startIndex: 30, endIndex: 40, scopes: ['three']},
         ];
         const result = mergeTokens(tokens);
-        expect(result).to.deep.equal(expected);
+        expect(result).toEqual(expected);
     });
 
     it('tests pairCaptureGroupsToMatchOffsets', () => {
@@ -87,10 +86,10 @@ describe('Validate Tokenizer', () => {
         const mOffsets = matchesToOffsets(m);
         const captureGroups = ['0'];
         const r = pairCaptureGroupsToMatchOffsets(captureGroups, mOffsets);
-        expect(r).to.not.be.undefined;
-        expect(r.map(r => r.captureGroups)).to.be.deep.equal([['0']]);
-        expect(r.map(r => r.begin)).to.be.deep.equal([2]);
-        expect(r.map(r => r.end)).to.be.deep.equal([21]);
+        expect(r).toBeDefined();
+        expect(r.map(r => r.captureGroups)).toEqual([['0']]);
+        expect(r.map(r => r.begin)).toEqual([2]);
+        expect(r.map(r => r.end)).toEqual([21]);
     });
 
     it('tests pairCaptureGroupsToMatchOffsets', () => {
@@ -99,9 +98,9 @@ describe('Validate Tokenizer', () => {
         const mOffsets = matchesToOffsets(m);
         const captureGroups = ['0', '1', '2', '3', '4'];
         const r = pairCaptureGroupsToMatchOffsets(captureGroups, mOffsets);
-        expect(r).to.not.be.undefined;
-        expect(r.map(r => r.captureGroups)).to.be.deep.equal([['0'], ['0', '1'], ['0', '2'], ['0', '2', '3'], ['4']]);
-        expect(r.map(r => t.slice(r.begin, r.end))).to.be.deep.equal([
+        expect(r).toBeDefined();
+        expect(r.map(r => r.captureGroups)).toEqual([['0'], ['0', '1'], ['0', '2'], ['0', '2', '3'], ['4']]);
+        expect(r.map(r => t.slice(r.begin, r.end))).toEqual([
             'one two three. four',
             'one',
             'two three.',
@@ -118,7 +117,7 @@ describe('Validate Tokenizer', () => {
         const r3 = tokenizeLine('    4: "four",', r2.state);
         const r4 = tokenizeLine('};', r3.state);
 
-        expect(r2.tokens[1].scopes).to.be.deep.equal([
+        expect(r2.tokens[1].scopes).toEqual([
             'meta.object-literal.key.js',
             'meta.object.member.js',
             'meta.objectliteral.js',
@@ -126,7 +125,7 @@ describe('Validate Tokenizer', () => {
             'source.js',
         ].reverse());
 
-        expect(r3.tokens[1].scopes).to.be.deep.equal([
+        expect(r3.tokens[1].scopes).toEqual([
             'constant.numeric.decimal.js',
             'meta.object-literal.key.js',
             'meta.object.member.js',
@@ -135,7 +134,7 @@ describe('Validate Tokenizer', () => {
             'source.js',
         ].reverse());
 
-        expect(r4.tokens).to.not.be.empty;
+        expect(r4.tokens).not.toHaveLength(0);
     });
 
     it('tests tokenizeLine sampleFakeGrammar', () => {
@@ -146,11 +145,11 @@ describe('Validate Tokenizer', () => {
         // console.log(r);
         let startIndex = 0;
         for (const t of tokens) {
-            expect(t.startIndex).to.equal(startIndex);
+            expect(t.startIndex).toBe(startIndex);
             startIndex = t.endIndex;
         }
         const textScope = tokens.map(t => ({ text: text.slice(t.startIndex, t.endIndex), scope: t.scopes.slice(-1)[0]}));
-        expect(textScope).to.be.deep.equal([
+        expect(textScope).toEqual([
             {scope: 'scope.js',                                 text: 'const x = '},
             {scope: 'punctuation.definition.string.begin.js',   text: "'"},
             {scope: 'string.quoted.single.js',                  text: 'it'},
@@ -163,17 +162,17 @@ describe('Validate Tokenizer', () => {
         ]);
 
         // fix sub matches can push out the end of parent matches.
-        expect(r.tokens).to.have.length(9);
+        expect(r.tokens).toHaveLength(9);
     });
 
     it('tests tokenizeLine Javascript', () => {
         const lines = sampleJavascript.split('\n');
         let rule = sampleJavascriptGrammarRule;
-        expect(lines).to.be.not.empty;
+        expect(Object.keys(lines)).not.toHaveLength(0);
         for (const line of lines) {
             const r = tokenizeLine(line, rule);
             if (line !== '') {
-                expect(r.tokens).to.not.be.empty;
+                expect(r.tokens).not.toHaveLength(0);
             }
             rule = r.state;
         }

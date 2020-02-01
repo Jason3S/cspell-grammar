@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-
 import * as XRegExp from 'xregexp';
 import { matchesToOffsets } from './regexpUtil';
 
@@ -8,8 +6,8 @@ describe('Validate Tokenizer', () => {
         const t = 'one two three';
         const m = XRegExp.exec(t, XRegExp('(?<first>\\w+) (?<second>\\w+) (?<third>\\w+)'), 0);
         const r = matchesToOffsets(m);
-        expect(r).to.include.all.keys(['first', 'second', 'third']);
-        expect(r).to.deep.equal(new Map([
+        expect([...r.keys()]).toEqual(expect.arrayContaining(['first', 'second', 'third']));
+        expect(r).toEqual(new Map([
             ['0', { begin: 0, end: t.length }],
             ['1', { begin: 0, end: 3 }],
             ['2', { begin: 4, end: 7 }],
@@ -24,8 +22,8 @@ describe('Validate Tokenizer', () => {
         const t = 'one two three';
         const m = XRegExp.exec(t, XRegExp('(?<first>\\w*(?<s1>\\w)) (?<second>\\w+) (?<third>\\w+(?<s2>\\w))'), 0);
         const r = matchesToOffsets(m);
-        expect(r).to.include.all.keys(['first', 'second', 'third']);
-        expect([...r.entries()]).to.deep.equal([
+        expect([...r.keys()]).toEqual(expect.arrayContaining(['first', 'second', 'third']));
+        expect([...r.entries()]).toEqual([
             ['0', { begin: 0, end: t.length }],
             ['1', { begin: 0, end: 3 }],
             ['2', { begin: 2, end: 3 }],
@@ -45,8 +43,8 @@ describe('Validate Tokenizer', () => {
         const t = 'one two three';
         const m = XRegExp.exec(t, XRegExp('(?<first>\\w*(?<s1>\\w)) (?:(?<second>\\w+)|(\\d+)) (?<third>\\w+)'), 0);
         const r = matchesToOffsets(m);
-        expect(r).to.include.all.keys(['first', 'second', 'third']);
-        expect([...r.entries()]).to.deep.equal([
+        expect([...r.keys()]).toEqual(expect.arrayContaining(['first', 'second', 'third']));
+        expect([...r.entries()]).toEqual([
             ['0', { begin: 0, end: t.length }],
             ['1', { begin: 0, end: 3 }],
             ['2', { begin: 2, end: 3 }],
@@ -61,5 +59,3 @@ describe('Validate Tokenizer', () => {
     });
 
 });
-
-

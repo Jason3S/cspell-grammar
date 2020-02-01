@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as fs from 'fs-extra';
 import { getFilenames } from '.';
 
@@ -9,7 +8,7 @@ describe('Index', () => {
             .map(name => fs.readFile(name, 'utf-8'))
             .map(async pFile => {
                 const file = await pFile;
-                expect(file).to.not.be.empty;
+                expect(Object.keys(file)).not.toHaveLength(0);
             });
         return Promise.all(tests);
     });

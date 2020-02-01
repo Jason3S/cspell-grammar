@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as syntaxRepository from 'cspell-grammar-syntax';
 import { Registry } from '.';
 import { Registry as VSCodeRegistry, ITokenizeLineResult, IGrammar, IRawGrammar, parseRawGrammar } from 'vscode-textmate';
@@ -45,7 +44,8 @@ describe('Validate against vscode-textmate', function() {
                 const bScopes = b.tokens.map(t => `${t.startIndex}-${Math.min(t.endIndex, mx)} ${t.scopes.join(' ')}`);
                 // const aScopes = a.tokens.map(t => t.scopes.join(' '));
                 // const bScopes = b.tokens.map(t => t.scopes.join(' '));
-                expect(aScopes, `${a.lineNumber} [${a.line}]`).to.be.deep.equal(bScopes);
+                // ${a.lineNumber} [${a.line}]
+                expect(aScopes).toEqual(bScopes);
             });
         });
     }

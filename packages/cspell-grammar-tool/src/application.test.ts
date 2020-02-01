@@ -1,8 +1,8 @@
-import { expect } from 'chai';
 import { colorizeFile, analyze } from './application';
 import { create, defaultUpdateFixtures } from './fixtures';
 import * as cacheMap from './util/cacheMap';
 import { Scope, createColorizer } from 'cspell-grammar';
+import stripAnsi = require('strip-ansi');
 
 const forceFixtureUpdate = false;
 const updateFixtures = defaultUpdateFixtures || forceFixtureUpdate;
@@ -29,14 +29,14 @@ describe('Validate Application', () => {
         const output: string[] = [];
         const filePath = require.resolve('./application');
         await analyze(filePath, line => output.push(line + '\n'));
-        expect(output.length).to.be.greaterThan(0);
+        expect(output.length).toBeGreaterThan(0);
     });
 
     it('Tests colorizing a file', async () => {
         const output: string[] = [];
         const filePath = require.resolve('./application');
         await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
-        expect(output.length).to.be.greaterThan(0);
+        expect(output.length).toBeGreaterThan(0);
     });
 
     tests.forEach((file) =>
@@ -46,7 +46,7 @@ describe('Validate Application', () => {
             const fixturePath = fixtureHelper.relativeFixturePath('application', 'colorize', file + '.txt');
             await colorizeFile(filePath, line => output.push(line + '\n'), createColorizer(colorizeScope));
             const result = await fixtureHelper.compare(fixturePath, output.join(''));
-            expect(result.actual).to.be.equal(result.expected);
+            expect(result.actual).toEqual(result.expected);
         })
     );
 
@@ -56,26 +56,28 @@ describe('Validate Application', () => {
             const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', file);
             const fixturePath = fixtureHelper.relativeFixturePath('application', 'analyze', file + '.txt');
             await analyze(filePath, line => output.push(line + '\n'));
-            const result = await fixtureHelper.compare(fixturePath, output.join(''));
-            expect(result.actual).to.be.equal(result.expected);
+            const result = await fixtureHelper.compare(fixturePath, stripAnsi(output.join('')));
+            expect(result.actual).toEqual(result.expected);
         })
     );
 
-    it('tests failing to find a grammar for colorize', () => {
+    it('tests failing to find a grammar for colorize', async () => {
         const filename = 'sample.unknown_ext';
         const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', filename);
-        colorizeFile(filePath, () => {}).then(
-            () => expect(true, 'Should not get here').to.be.false,
-            (msg) => expect(msg).to.be.equal(`Unable to find grammar that matches file: ${filename}`)
+        await colorizeFile(filePath, () => {}).then(
+            () => // 'Should not get here'
+            expect(true).toBe(false),
+            (msg) => expect(msg).toBe(`Unable to find grammar that matches file: ${filename}`)
         );
     });
 
-    it('tests failing to find a grammar for analyse', () => {
+    it('tests failing to find a grammar for analyse', async () => {
         const filename = 'sample.unknown_ext';
         const filePath = fixtureHelper.resolveFixturePath('grammar', 'src', filename);
-        analyze(filePath, () => {}).then(
-            () => expect(true, 'Should not get here').to.be.false,
-            (msg) => expect(msg).to.be.equal(`Unable to find grammar that matches file: ${filename}`)
+        await analyze(filePath, () => {}).then(
+            () => // 'Should not get here'
+            expect(true).toBe(false),
+            (msg) => expect(msg).toBe(`Unable to find grammar that matches file: ${filename}`)
         );
     });
 });

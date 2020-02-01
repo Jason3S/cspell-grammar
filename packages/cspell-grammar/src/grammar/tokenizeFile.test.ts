@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { create, defaultUpdateFixtures } from '../fixtures';
 import { Grammar } from './grammar';
 import { tokenizeFile } from './tokenizeFile';
@@ -21,7 +20,7 @@ function toFixturePath(name: string) {
     return fixtureHelper.relativeFixturePath('grammar', 'tokenized', name);
 }
 
-describe('Validate tokenizeFile', async function () {
+describe('Validate tokenizeFile', function () {
     const grammarCache = cacheMap.create((grammarName: string) => {
         return Grammar.createFromFile(pathToSyntax(grammarName));
     });
@@ -47,7 +46,7 @@ describe('Validate tokenizeFile', async function () {
             const json = JSON.stringify(tokenizedResult, null, 2);
             const compFull = await fixtureHelper.compare(toFixturePath(fixtureName), json);
             const comp = fixtureHelper.simplifyResult(compFull);
-            expect(comp.actual).to.be.equal(comp.expected);
+            expect(comp.actual).toBe(comp.expected);
         });
     }
 
@@ -55,4 +54,3 @@ describe('Validate tokenizeFile', async function () {
         testFile(sampleFile, grammarName, fixtureName);
     }
 });
-

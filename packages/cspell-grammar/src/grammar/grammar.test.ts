@@ -1,5 +1,4 @@
 import { Grammar } from './grammar';
-import { expect } from 'chai';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { formatTokenizeText } from '../util/display';
@@ -10,14 +9,15 @@ const sampleJavascriptFile = path.join(__dirname, '..', '..', 'fixtures', 'gramm
 const golangGrammarFile = path.join(__dirname, '..', '..', 'fixtures', 'grammar', 'syntax', 'go.tmLanguage.json');
 const sampleGolangFile = path.join(__dirname, '..', '..', 'fixtures', 'grammar', 'src', 'sample.go');
 
+const TIMEOUT = 10000;
+
 describe('Validate Grammar', function() {
-    this.timeout(10000);
 
     it('tests creating a Grammar from a file', async () => {
         const filename = javascriptGrammarFile;
         const grammar = await Grammar.createFromFile(filename);
-        expect(grammar).instanceof(Grammar);
-    });
+        expect(grammar).toBeInstanceOf(Grammar);
+    }, TIMEOUT);
 
     it('test tokenizing a GO file', async () => {
         const filename = golangGrammarFile;
@@ -27,7 +27,7 @@ describe('Validate Grammar', function() {
         for (const s of formatTokenizeText(file, grammar)) {
             output(s);
         }
-    });
+    }, TIMEOUT);
 
     it('tests tokenizing a javascript file', async () => {
         const filename = javascriptGrammarFile;
@@ -39,22 +39,21 @@ describe('Validate Grammar', function() {
             const tokens = tokenizer.tokenize(line);
             let last = 0;
             for (const t of tokens) {
-                expect(t.startIndex).to.be.eq(last);
-                expect(t.scopes.length).to.be.at.least(1);
-                expect(t.scopes[0]).to.be.eq('source.js');
+                expect(t.startIndex).toBe(last);
+                expect(t.scopes.length).toBeGreaterThanOrEqual(1);
+                expect(t.scopes[0]).toBe('source.js');
                 last = t.endIndex;
             }
-            expect(last).to.be.eq(line.length);
+            expect(last).toBe(line.length);
         }
         for (const s of formatTokenizeText(file, grammar)) {
             output(s);
         }
-    });
+    }, TIMEOUT);
 
 });
 
 function output(text: string) {
-    expect(text).to.not.be.undefined;
+    expect(text).toBeDefined();
     // console.log(text);
 }
-
