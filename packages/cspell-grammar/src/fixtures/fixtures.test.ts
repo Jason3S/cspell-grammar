@@ -1,4 +1,4 @@
-import { create } from './fixtures';
+import { create, CompareResult } from './fixtures';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 
@@ -52,5 +52,22 @@ describe('Validate Fixtures', () => {
         });
 
         await fs.remove(fullFixturePath);
+    });
+
+    it('test simplifyResult', () => {
+        const fixtureHelper = create();
+        const resultEqual: CompareResult = {
+            expected: 'This is a bit of text that we will compare.',
+            actual:   'This is a bit of text that we will compare.',
+        };
+        expect(fixtureHelper.simplifyResult(resultEqual, 100, 100)).toEqual(resultEqual);
+        const resultDiff: CompareResult = {
+            expected: 'This is a bit of text that we will compare.',
+            actual:   'This is a bit of text that doesn\'t match.',
+        };
+        expect(fixtureHelper.simplifyResult(resultDiff, 20, 10)).toEqual({
+            actual:   'bit of text that doe',
+            expected: 'bit of text that we ',
+        });
     });
 });

@@ -1,5 +1,5 @@
 import { Pattern } from './grammarDefinition';
-import { isPatternInclude, isPatternBeginEnd, isPatternMatch, isPatternPatterns } from './pattern';
+import { isPatternInclude, isPatternBeginEnd, isPatternMatch, isPatternPatterns, patternToString } from './pattern';
 
 describe('Verify pattern.ts', () => {
     const patterns: Pattern[] = [
@@ -28,4 +28,13 @@ describe('Verify pattern.ts', () => {
         expect(result).toEqual([false, false, false, true]);
     });
 
+    it('tests patternToString', () => {
+        const result = patterns.map(patternToString);
+        expect(result).toEqual([
+            'PatternInclude: ? (scope.ts)',
+            'PatternMatch: word (/\\w+/)',
+            'PatternBeginEnd: comment (/\\/\\*/)',
+            'PatternPatterns: ? [0]',
+        ]);
+    });
 });
