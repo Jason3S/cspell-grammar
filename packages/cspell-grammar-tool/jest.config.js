@@ -24,7 +24,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  // coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -197,6 +197,11 @@ module.exports = {
       "jsx",
       "json",
       "node"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!**/node_modules/**",
+    "!**/vendor/**"
   ],
   "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
