@@ -8,8 +8,7 @@
     "build": "tsc -p .",
     "prepublish": "npm run build",
     "coverage": "npm run generate-code-coverage",
-    "generate-code-coverage": "NODE_ENV=test nyc --silent --no-clean --temp-dir=../../.nyc_output npm run test-ts",
-    "test-ts": "NODE_ENV=test mocha --exit --require ts-node/register --recursive \"src/**/*.test.ts\"",
+    "generate-code-coverage": "jest --coverage",
     "test": "jest"
   },
   "repository": {

@@ -10,9 +10,9 @@
 		"coveralls": "^3.0.9",
 		"cspell-grammar-syntax": "^0.1.5",
 		"gensequence": "^3.0.3",
+		"globcat": "^1.2.0",
 		"jest": "^25.1.0",
 		"lerna": "^3.20.2",
-		"nyc": "^14.1.1",
 		"rimraf": "^2.7.1",
 		"strip-ansi": "^6.0.0",
 		"ts-jest": "^25.1.0",
@@ -29,9 +29,9 @@
 		"prepare": "lerna bootstrap && npm run build",
 		"lerna-build": "lerna run build",
 		"lerna-test": "lerna run test",
-		"coverage": "rimraf .nyc_output && npm run generate-code-coverage && nyc report --reporter=lcov --reporter=html",
+		"coverage": "npm run generate-code-coverage",
 		"generate-code-coverage": "lerna run generate-code-coverage",
-		"coverage-coveralls": "npm run generate-code-coverage && nyc report --reporter=text-lcov | coveralls"
+		"coverage-coveralls": "npm run generate-code-coverage && globcat packages/*/coverage/lcov.info | coveralls"
 	},
 	"author": "Jason Dent",
 	"license": "MIT",
