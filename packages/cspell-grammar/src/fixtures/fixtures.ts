@@ -67,7 +67,7 @@ export function create(fixturesLocation: string = defaultFixturesLocation): Fixt
      * This function reduces the size of the differences between expected and actual.
      * @param result result of a compare
      */
-    function simplifyResult(result: CompareResult, maxLen = 1000, stepSize = 1000): CompareResult {
+    function simplifyResult(result: CompareResult, maxLen = 1000, stepSize = 500): CompareResult {
         if (result.expected === result.actual) {
             return result;
         }

@@ -7,7 +7,8 @@
   "files": [
     "dist/**",
     "src/**",
-    "!**/*.test.*"
+    "!**/*.test.*",
+    "!**/*.map"
   ],
   "scripts": {
     "clean": "rimraf ./dist",
@@ -20,13 +21,11 @@
     "tsc": "tsc -p .",
     "tscv": "tsc -v",
     "coverage": "npm run generate-code-coverage",
-    "generate-code-coverage": "NODE_ENV=test nyc --silent --no-clean --temp-dir=../../.nyc_output npm run test-ts",
-    "test-ts": "NODE_ENV=test mocha --exit --require ts-node/register --recursive --bail \"src/**/*.test.ts\"",
-    "test-ts-file": "NODE_ENV=test mocha --exit --require ts-node/register",
-    "test-watch": "npm run build && mocha --exit --require ts-node/register --watch --recursive \"src/**/*.test.ts\"",
+    "generate-code-coverage": "jest --coverage",
+    "test-watch": "jest --watch",
     "prepublish": "npm run clean-build",
     "prepublish-check": "npm run lint",
-    "test-unit": "mocha --recursive \"dist/**/*.test.js\"",
+    "test-unit": "jest",
     "test": "npm run test-unit"
   },
   "repository": {
@@ -53,26 +52,5 @@
   },
   "engines": {
     "node": ">=10.0.0"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      "src/**/*.test.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "clean": false,
-    "cache": false,
-    "temp-directory": "../../.nyc_output",
-    "reporter": [
-      "json",
-      "html"
-    ]
   }
 }

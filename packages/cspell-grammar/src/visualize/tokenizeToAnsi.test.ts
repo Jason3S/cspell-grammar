@@ -1,10 +1,9 @@
-import { expect } from 'chai';
 import { create, defaultUpdateFixtures } from '../fixtures';
 import { Grammar } from '../grammar';
 import * as cacheMap from '../util/cacheMap';
 import { tokenizeFile } from './tokenizeToAnsi';
 import { createScopeColorizer, createDefaultColorMap } from './tokenColorizer';
-import chalk from 'chalk';
+import chalk = require('chalk');
 
 const updateFixtures = defaultUpdateFixtures;
 const fixtureHelper = create();
@@ -22,8 +21,9 @@ function toFixturePath(name: string) {
     return fixtureHelper.relativeFixturePath('grammar', 'tokenized', name);
 }
 
+const TIMEOUT = 60000;
+
 describe('Validate tokenizeToAnsi', function () {
-    this.timeout(60000);
     const grammarCache = cacheMap.create((grammarName: string) => {
         return Grammar.createFromFile(pathToSyntax(grammarName));
     });
@@ -37,7 +37,7 @@ describe('Validate tokenizeToAnsi', function () {
         ['sample.ts', 'TypeScript.tmLanguage.json'],
     ];
 
-    const colorizer = createScopeColorizer(createDefaultColorMap(new chalk.constructor({level: 0})));
+    const colorizer = createScopeColorizer(createDefaultColorMap(new chalk.Instance({level: 0})));
 
     for (const [sampleFile, grammarName] of tests) {
         it(`test tokenizeFile ${sampleFile}`, async () => {
@@ -45,7 +45,7 @@ describe('Validate tokenizeToAnsi', function () {
             const fixtureName = sampleFile + '.txt';
             const md = await tokenizeFile(grammar, colorizer, pathToSource(sampleFile));
             const comp = await fixtureHelper.compare(toFixturePath(fixtureName), md);
-            expect(comp.actual).to.be.equal(comp.expected);
-        });
+            expect(comp.actual).toBe(comp.expected);
+        }, TIMEOUT);
     }
 });

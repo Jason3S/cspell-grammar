@@ -8,9 +8,8 @@
     "build": "tsc -p .",
     "prepublish": "npm run build",
     "coverage": "npm run generate-code-coverage",
-    "generate-code-coverage": "NODE_ENV=test nyc --silent --no-clean --temp-dir=../../.nyc_output npm run test-ts",
-    "test-ts": "NODE_ENV=test mocha --exit --require ts-node/register --recursive \"src/**/*.test.ts\"",
-    "test": "mocha --recursive \"dist/**/*.test.js\""
+    "generate-code-coverage": "jest --coverage",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,9 @@
   "license": "MIT",
   "files": [
     "dist/**",
-    "syntax/**"
+    "syntax/**",
+    "!**/*.test.*",
+    "!**/*.map"
   ],
   "bugs": {
     "url": "https://github.com/Jason3S/cspell-grammar/issues"
@@ -36,26 +37,5 @@
   "dependencies": {
     "fs-extra": "^8.0.1"
   },
-  "devDependencies": {},
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      "src/**/*.test.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "clean": false,
-    "cache": false,
-    "temp-directory": "../../.nyc_output",
-    "reporter": [
-      "json",
-      "html"
-    ]
-  }
+  "devDependencies": {}
 }

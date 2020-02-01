@@ -1,29 +1,28 @@
-import { expect } from 'chai';
 import { createDefaultColorMap, createScopeColorizer, createColorizer, createDefaultColorApplicator, ColorApplicator } from './tokenColorizer';
 import { Token } from '..';
 
 describe('Validate tokenColorizer', () => {
     it('createDefaultColorMap', () => {
         const map = createDefaultColorMap(createDefaultColorApplicator());
-        expect(map.defaultColorizer('hello')).to.be.equal('hello');
+        expect(map.defaultColorizer('hello')).toBe('hello');
     });
 
     it('test createScopeColorizer default', () => {
         const colorizer = createScopeColorizer();
-        expect(colorizer('hello', 'title')).to.contain('hello');
+        expect(colorizer('hello', 'title')).toEqual(expect.stringContaining('hello'));
     });
 
     it('test createScopeColorizer', () => {
         const colorizer = createScopeColorizer();
-        expect(colorizer('hello', 'title')).to.equal('hello');
+        expect(colorizer('hello', 'title')).toBe('hello');
     });
 
     it('test createScopeColorizer', () => {
         const applicator = createDefaultColorApplicator();
         const map = createDefaultColorMap(wrapColorApplicator(applicator));
         const colorizer = createScopeColorizer(map);
-        expect(colorizer('hello', 'title')).to.contain('hello');
-        expect(colorizer('hello', 'title')).to.not.equal('hello');
+        expect(colorizer('hello', 'title')).toEqual(expect.stringContaining('hello'));
+        expect(colorizer('hello', 'title')).not.toBe('hello');
     });
 
     it('test createColorizer', () => {
@@ -53,7 +52,7 @@ describe('Validate tokenColorizer', () => {
             },
         ];
         const r = colorizer(line, tokens);
-        expect(r).to.be.equal(line);
+        expect(r).toBe(line);
     });
 
     function wrapColorApplicator(app: ColorApplicator): ColorApplicator {
