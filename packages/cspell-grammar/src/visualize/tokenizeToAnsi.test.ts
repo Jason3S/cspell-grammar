@@ -3,7 +3,7 @@ import { Grammar } from '../grammar';
 import * as cacheMap from '../util/cacheMap';
 import { tokenizeFile } from './tokenizeToAnsi';
 import { createScopeColorizer, createDefaultColorMap } from './tokenColorizer';
-import chalk from 'chalk';
+import chalk = require('chalk');
 
 const updateFixtures = defaultUpdateFixtures;
 const fixtureHelper = create();
@@ -37,7 +37,7 @@ describe('Validate tokenizeToAnsi', function () {
         ['sample.ts', 'TypeScript.tmLanguage.json'],
     ];
 
-    const colorizer = createScopeColorizer(createDefaultColorMap(new chalk.constructor({level: 0})));
+    const colorizer = createScopeColorizer(createDefaultColorMap(new chalk.Instance({level: 0})));
 
     for (const [sampleFile, grammarName] of tests) {
         it(`test tokenizeFile ${sampleFile}`, async () => {

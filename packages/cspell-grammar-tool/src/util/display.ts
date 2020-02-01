@@ -1,4 +1,5 @@
-import chalk, { Chalk } from 'chalk';
+import { Chalk } from 'chalk';
+import chalk = require('chalk');
 import { Grammar } from 'cspell-grammar';
 
 type ColorMap = [RegExp, Chalk][];

@@ -7,7 +7,8 @@
   "files": [
     "dist/**",
     "src/**",
-    "!**/*.test.*"
+    "!**/*.test.*",
+    "!**/*.map"
   ],
   "scripts": {
     "clean": "rimraf ./dist",
@@ -51,26 +52,5 @@
   },
   "engines": {
     "node": ">=10.0.0"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      "src/**/*.test.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "clean": false,
-    "cache": false,
-    "temp-directory": "../../.nyc_output",
-    "reporter": [
-      "json",
-      "html"
-    ]
   }
 }
